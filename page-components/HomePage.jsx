@@ -45,8 +45,8 @@ export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
               </p>
           </div>
 
-          <div className="mb-6 flex justify-center overflow-x-auto pb-2">
-            <div className="flex min-w-max items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
+          <div className="tabs-scroll mb-6 flex justify-start overflow-x-auto pb-2 md:justify-center">
+            <div className="flex min-w-max snap-x snap-mandatory items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
               {MATERIAL_CATEGORIES.map((cat) => {
                 const isActive = activeMaterialTab === cat.id;
 
@@ -54,7 +54,8 @@ export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
                   <button
                     key={cat.id}
                     onClick={() => setActiveMaterialTab(cat.id)}
-                    className={`rounded-xl px-4 py-3 text-xs sm:px-5 sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                    aria-pressed={isActive}
+                    className={`snap-start rounded-xl px-3 py-2.5 text-[11px] font-semibold whitespace-nowrap transition-all duration-200 sm:px-5 sm:py-3 sm:text-sm ${
                       isActive
                         ? 'bg-[#0A2540] text-white shadow-md'
                         : 'text-slate-600 hover:bg-white hover:text-[#0A2540]'
