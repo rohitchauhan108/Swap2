@@ -45,20 +45,26 @@ export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
               </p>
           </div>
 
-          <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
-            {MATERIAL_CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveMaterialTab(cat.id)}
-                className={`px-5 py-3 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all border-b-2 ${
-                  activeMaterialTab === cat.id
-                    ? 'border-[#0A2540] text-[#0A2540]'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
+          <div className="mb-6 flex justify-center overflow-x-auto pb-2">
+            <div className="flex min-w-max items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
+              {MATERIAL_CATEGORIES.map((cat) => {
+                const isActive = activeMaterialTab === cat.id;
+
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveMaterialTab(cat.id)}
+                    className={`rounded-xl px-4 py-3 text-xs sm:px-5 sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                      isActive
+                        ? 'bg-[#0A2540] text-white shadow-md'
+                        : 'text-slate-600 hover:bg-white hover:text-[#0A2540]'
+                    }`}
+                  >
+                    {cat.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#FAFAFA] rounded-2xl p-5 sm:p-8 border border-slate-200">
