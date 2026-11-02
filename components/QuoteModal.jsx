@@ -74,10 +74,10 @@ export default function QuoteModal({ isOpen, onClose, initialSystem = '' }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-6 animate-in fade-in duration-200">
+      <div className="relative flex max-h-[calc(100dvh-1rem)] w-full max-w-xl flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl sm:max-h-[calc(100dvh-3rem)]">
         {/* Modal Header with SWAP Logo Gradient */}
-        <div className="bg-gradient-to-r from-[#00132B] via-[#001F43] to-[#0B3566] text-white p-6 sm:p-8 flex items-start justify-between relative border-b border-[#143B66]">
+        <div className="flex shrink-0 items-start justify-between border-b border-[#143B66] bg-gradient-to-r from-[#00132B] via-[#001F43] to-[#0B3566] p-4 text-white sm:p-6">
           <div className="space-y-1 max-w-lg">
             <span className="text-[11px] font-bold uppercase tracking-widest text-[#E6C687]">
               Wholesale Estimating & Takeoff Services
@@ -91,15 +91,15 @@ export default function QuoteModal({ isOpen, onClose, initialSystem = '' }) {
           </div>
           <button
             onClick={onClose}
-            className="text-slate-300 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+            className="shrink-0 rounded-lg p-2 text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8">
+        <div className="min-h-0 overflow-y-auto p-4 sm:p-6">
           {submitted ? (
             <div className="text-center py-8 space-y-6 animate-in zoom-in-95 duration-200">
               <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
