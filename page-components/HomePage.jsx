@@ -1,0 +1,142 @@
+'use client';
+
+import React, { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import SWAPHeroSection from '@/components/SWAPHeroSection';
+import {
+  MATERIAL_CATEGORIES,
+} from '@/data/companyData';
+
+const HOME_BRANDS = [
+  { name: 'Reynaers Aluminium', logo: '/brands/alumimium/reynoers.png', url: 'https://www.reynaers.com/' },
+  { name: 'Schüco', logo: '/brands/alumimium/schuco.png', url: 'https://www.schueco.com/' },
+  { name: 'Hansen', logo: '/brands/alumimium/hansen.png', url: 'https://hansensystems.com/' },
+  { name: 'Cortizo', logo: '/brands/alumimium/cortizo.png', url: 'https://www.cortizo.com/en' },
+  { name: 'Aluprof', logo: '/brands/alumimium/aluprof.png', url: 'https://aluprof.com/en' },
+  { name: 'Sisecam', logo: '/brands/glass/sisecam.png', url: 'https://www.sisecam.com/en' },
+  { name: 'Saint-Gobain', logo: '/brands/glass/saint-goblin.png', url: 'https://www.saint-gobain.com/' },
+  { name: 'Guardian Glass', logo: '/brands/glass/guardian-glass.png', url: 'https://www.guardianglass.com/' },
+  { name: 'Press Glass', logo: '/brands/glass/pressglass.png', url: 'https://www.pressglass.com/' },
+  { name: 'AGC', logo: '/brands/glass/agc.png', url: 'https://www.agc.com/' },
+];
+
+export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
+  const [activeMaterialTab, setActiveMaterialTab] = useState('steel');
+
+  const selectedMaterial = MATERIAL_CATEGORIES.find((m) => m.id === activeMaterialTab) || MATERIAL_CATEGORIES[0];
+
+  return (
+    <div className="w-full bg-[#FAFAFA]">
+      {/* 1. NEW SWAP HERO SECTION (S - Steel, W - Wood, A - Aluminum, P - PVC in our architectural theme) */}
+      <SWAPHeroSection onNavigate={onNavigate} onOpenQuote={onOpenQuote} />
+
+      {/* Material categories */}
+      <section className="py-14 md:py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="mb-8 max-w-2xl space-y-2">
+              <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
+                Material Options
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
+                Four materials. One sourcing partner.
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 font-light">
+                Steel, wood, aluminum, and PVC systems for custom windows and doors.
+              </p>
+          </div>
+
+          <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
+            {MATERIAL_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveMaterialTab(cat.id)}
+                className={`px-5 py-3 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all border-b-2 ${
+                  activeMaterialTab === cat.id
+                    ? 'border-[#0A2540] text-[#0A2540]'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#FAFAFA] rounded-2xl p-5 sm:p-8 border border-slate-200">
+            <div className="lg:col-span-6 space-y-4">
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#C59A45]">
+                  {selectedMaterial.shortName} Fenestration
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#0A2540]">
+                  {selectedMaterial.headline}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {selectedMaterial.description}
+                </p>
+              </div>
+              <div className="pt-2 flex items-center gap-4">
+                <button
+                  onClick={() => onNavigate('products', { category: selectedMaterial.id })}
+                  className="px-6 py-3 bg-swap-blue-btn text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow border border-[#1A4B82]/50"
+                >
+                  <span>Explore {selectedMaterial.shortName} Catalog</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#E6C687]" />
+                </button>
+                <button
+                  onClick={() => onOpenQuote(`${selectedMaterial.name} Scope`)}
+                  className="px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0A2540] transition-colors"
+                >
+                  Request Takeoff →
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="relative rounded-xl overflow-hidden shadow-md aspect-[4/3] bg-slate-200">
+                <img
+                  src={selectedMaterial.image}
+                  alt={selectedMaterial.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brand partners */}
+      <section className="py-14 md:py-20 bg-[#FAFAFA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
+            <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
+              Global Manufacturing Partners
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[#0A2540]">
+              Brands We Supply
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 font-light">
+              Selected profile and glass manufacturing partners.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+            {HOME_BRANDS.map((brand) => (
+              <a
+                key={brand.name}
+                href={brand.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex min-h-32 flex-col items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-center transition-all hover:-translate-y-1 hover:shadow-md"
+                title={`Visit ${brand.name}`}
+              >
+                <img src={brand.logo} alt={`${brand.name} logo`} className="h-14 w-full object-contain" loading="lazy" />
+                <span className="text-xs font-semibold text-[#0A2540]">{brand.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}

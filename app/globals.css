@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Syne', sans-serif;
+    --font-sans: 'DM Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #1e293b;
+    background-color: #fafafa;
+    overflow-x: hidden;
+  }
+
+  .custom-cursor-ring,
+  .custom-cursor-dot {
+    position: fixed;
+    z-index: 9999;
+    border-radius: 9999px;
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .custom-cursor-ring {
+    top: -16px;
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(197, 154, 69, 0.65);
+    transition: opacity 180ms ease, width 180ms ease, height 180ms ease;
+  }
+
+  .custom-cursor-dot {
+    top: -3px;
+    left: -3px;
+    width: 6px;
+    height: 6px;
+    background: #c59a45;
+    box-shadow: 0 0 10px rgba(197, 154, 69, 0.55);
+    transition: opacity 120ms ease;
+  }
+
+  .custom-cursor-ring.is-visible,
+  .custom-cursor-dot.is-visible {
+    opacity: 1;
+  }
+
+  button:not(:disabled),
+  a[href],
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  @media (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .custom-cursor-ring,
+    .custom-cursor-dot {
+      display: none;
+    }
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+  }
+}
+
+.font-heading {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Custom smooth architectural aesthetic utilities */
+.editorial-quote {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+/* Smooth transitions */
+.transition-architectural {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Authentic SWAP Logo Gradient Palettes */
+.bg-swap-navy-gradient {
+  background: linear-gradient(135deg, #00142E 0%, #002148 45%, #0B366B 100%);
+}
+
+.bg-swap-navy-radial {
+  background: radial-gradient(circle at top right, #124480 0%, #002148 45%, #00132B 100%);
+}
+
+.bg-swap-blue-btn {
+  background: linear-gradient(135deg, #001C3E 0%, #073160 50%, #154884 100%);
+  box-shadow: 0 2px 8px rgba(0, 31, 67, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bg-swap-blue-btn:hover {
+  background: linear-gradient(135deg, #002552 0%, #0C3C75 50%, #1D589C 100%);
+  box-shadow: 0 4px 14px rgba(7, 49, 96, 0.35);
+  transform: translateY(-1px);
+}
+
+.bg-swap-gold-btn {
+  background: linear-gradient(135deg, #A86F1C 0%, #C9963B 50%, #E4B85E 100%);
+  box-shadow: 0 2px 8px rgba(181, 124, 38, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bg-swap-gold-btn:hover {
+  background: linear-gradient(135deg, #B87B22 0%, #D8A546 50%, #EFC36A 100%);
+  box-shadow: 0 4px 14px rgba(201, 150, 59, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Architectural Grid & Blueprint Line Patterns */
+.bg-architectural-grid {
+  background-image: 
+    linear-gradient(to right, rgba(10, 37, 64, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 37, 64, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-architectural-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(10, 37, 64, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 37, 64, 0.035) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.bg-architectural-grid-dark {
+  background-image: 
+    linear-gradient(to right, rgba(230, 198, 135, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 198, 135, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-blueprint-lines-dark {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* CAD corner marks */
+.cad-crosshair {
+  position: relative;
+}
+.cad-crosshair::before,
+.cad-crosshair::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
