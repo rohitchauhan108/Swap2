@@ -1,11 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
 import SWAPHeroSection from '@/components/SWAPHeroSection';
-import {
-  MATERIAL_CATEGORIES,
-} from '@/data/companyData';
+import TradePartnershipSection from '@/components/TradePartnershipSection';
 
 const HOME_BRANDS = [
   { name: 'Reynaers Aluminium', logo: '/brands/alumimium/reynoers.png', url: 'https://www.reynaers.com/' },
@@ -21,95 +18,11 @@ const HOME_BRANDS = [
 ];
 
 export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
-  const [activeMaterialTab, setActiveMaterialTab] = useState('steel');
-
-  const selectedMaterial = MATERIAL_CATEGORIES.find((m) => m.id === activeMaterialTab) || MATERIAL_CATEGORIES[0];
-
   return (
     <div className="w-full bg-[#FAFAFA]">
       {/* 1. NEW SWAP HERO SECTION (S - Steel, W - Wood, A - Aluminum, P - PVC in our architectural theme) */}
       <SWAPHeroSection onNavigate={onNavigate} onOpenQuote={onOpenQuote} />
-
-      {/* Material categories */}
-      <section className="py-14 md:py-20 bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="mb-8 max-w-2xl space-y-2">
-              <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
-                Material Options
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
-                Four materials. One sourcing partner.
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 font-light">
-                Steel, wood, aluminum, and PVC systems for custom windows and doors.
-              </p>
-          </div>
-
-          <div className="tabs-scroll mb-6 flex justify-start overflow-x-auto pb-2 md:justify-center">
-            <div className="flex min-w-max snap-x snap-mandatory items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
-              {MATERIAL_CATEGORIES.map((cat) => {
-                const isActive = activeMaterialTab === cat.id;
-
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveMaterialTab(cat.id)}
-                    aria-pressed={isActive}
-                    className={`snap-start rounded-xl px-3 py-2.5 text-[11px] font-semibold whitespace-nowrap transition-all duration-200 sm:px-5 sm:py-3 sm:text-sm ${
-                      isActive
-                        ? 'bg-[#0A2540] text-white shadow-md'
-                        : 'text-slate-600 hover:bg-white hover:text-[#0A2540]'
-                    }`}
-                  >
-                    {cat.name}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#FAFAFA] rounded-2xl p-5 sm:p-8 border border-slate-200">
-            <div className="lg:col-span-6 space-y-4">
-              <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#C59A45]">
-                  {selectedMaterial.shortName} Fenestration
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#0A2540]">
-                  {selectedMaterial.headline}
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  {selectedMaterial.description}
-                </p>
-              </div>
-              <div className="pt-2 flex items-center gap-4">
-                <button
-                  onClick={() => onNavigate('products', { category: selectedMaterial.id })}
-                  className="px-6 py-3 bg-swap-blue-btn text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center gap-2 shadow border border-[#1A4B82]/50"
-                >
-                  <span>Explore {selectedMaterial.shortName} Catalog</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#E6C687]" />
-                </button>
-                <button
-                  onClick={() => onOpenQuote(`${selectedMaterial.name} Scope`)}
-                  className="px-5 py-3 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#0A2540] transition-colors"
-                >
-                  Request Takeoff →
-                </button>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <div className="relative rounded-xl overflow-hidden shadow-md aspect-[4/3] bg-slate-200">
-                <img
-                  src={selectedMaterial.image}
-                  alt={selectedMaterial.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TradePartnershipSection />
 
       {/* Brand partners */}
       <section className="py-14 md:py-20 bg-[#FAFAFA]">

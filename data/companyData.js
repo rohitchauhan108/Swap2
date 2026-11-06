@@ -17,7 +17,6 @@ export const COMPANY_INFO = {
   phoneClean: "8772127927",
   email: "SWAP@swapwindows.com",
   website: "https://swapwindows.com/",
-  address: "7 Orshava Ct, Suite 102, Monroe, NY 10950",
   serviceRegions: "USA, Canada & European Projects",
   date: "October 28, 2026",
   testingStandards: ["USA Tested", "European Tested"],

@@ -1,156 +1,73 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { COMPANY_INFO } from '@/data/companyData';
-const heroArchitecturalFacade = "/images/hero_architectural_facade_1793359234348.jpg";
 
-export default function TradePartnershipSection({ onNavigate, onOpenQuote }) {
+export default function TradePartnershipSection() {
   return (
-    <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-white border-b border-slate-200 bg-architectural-grid">
-      {/* Architectural CAD Blueprint Corner Markers */}
-      <div className="absolute top-4 left-6 text-slate-300 font-mono text-[10px] select-none pointer-events-none hidden sm:block">
-        + 41°19'N 74°11'W · CAD GRID: 44MM
-      </div>
-      <div className="absolute top-4 right-6 text-slate-300 font-mono text-[10px] select-none pointer-events-none hidden sm:block">
-        REV. 2026.10 · SWAP WHOLESALE
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-        {/* Editorial Kicker */}
-        <div className="flex items-center gap-3 text-xs tracking-widest uppercase font-semibold text-[#0A2540] mb-6">
-          <span className="w-8 h-[2px] bg-[#C59A45]"></span>
-          <span>Wholesale Supply for Glazing Contractors & Dealers</span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          {/* Left Typography Column */}
-          <div className="lg:col-span-7 space-y-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[#0A2540] leading-tight">
-              A Partnership Built for the Window Trade.
-            </h2>
-
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl font-light leading-relaxed">
-              SWAP Windows Corp. provides wholesale windows, doors, architectural aluminum glazing systems, and glass for commercial and residential projects across the USA, Canada, and Europe. We deliver project-specific takeoffs, precision engineering, and job-site delivery.
+    <section className="bg-white py-16 md:py-20">
+      <div className="mx-auto max-w-4xl px-4 sm:px-8">
+        <article className="border-y border-slate-200 py-8 text-center md:py-10">
+          <div className="mb-8 text-center">
+            <p className="text-base font-bold uppercase tracking-[0.2em] text-[#0A2540]">
+              STEEL&nbsp; | &nbsp;WOOD&nbsp; | &nbsp;ALUMINUM&nbsp; | &nbsp;PVC
             </p>
+            <p className="mt-3 text-sm text-slate-500">
+              877-212-SWAP&nbsp; | &nbsp;SWAP@swapwindows.com&nbsp; | &nbsp;swapwindows.com
+            </p>
+          </div>
 
-            {/* Action Buttons with Logo Gradient */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              <button
-                onClick={() => onNavigate('products')}
-                className="px-7 py-4 bg-swap-blue-btn text-white text-xs font-bold uppercase tracking-widest rounded-lg shadow-md flex items-center justify-center gap-3 group border border-[#1A4B82]/50"
-              >
-                <span>Explore Products</span>
-                <ArrowRight className="w-4 h-4 text-[#E6C687] group-hover:translate-x-1 transition-transform" />
-              </button>
+          {/* <p className="text-sm text-slate-500">October 28, 2026</p> */}
+          <h2 className="mt-3 text-4xl font-heading font-bold leading-tight text-[#0A2540] sm:text-5xl">
+            A Partnership Built for the Window Trade
+          </h2>
+          <p className="mt-6 text-base font-medium text-slate-700">Dear Glazing Contractors and Window Dealers,</p>
+          <p className="mt-4 text-base leading-8 text-slate-600 sm:text-lg">
+            SWAP Windows Corp. provides wholesale windows, doors, architectural aluminum glazing systems, and glass for commercial and residential projects.
+          </p>
 
-              <button
-                onClick={onOpenQuote}
-                className="px-7 py-4 bg-transparent hover:bg-slate-50 text-[#0A2540] border border-slate-300 hover:border-[#0A2540] text-xs font-bold uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-2"
-              >
-                <span>Request a Quote</span>
-                <ArrowUpRight className="w-4 h-4 text-slate-500" />
-              </button>
+          <div className="mt-9 space-y-8 text-base leading-8 text-slate-600 sm:text-lg">
+            <div>
+              <h3 className="text-lg font-bold leading-7 text-[#0A2540]">WINDOWS &amp; DOORS - FOUR MATERIAL OPTIONS</h3>
+              <p>
+                Steel, Wood, Aluminum, and PVC are our primary material options for custom windows and doors. Product availability is determined by the selected system and project requirements.
+              </p>
             </div>
 
-            {/* Material Sub-kicker */}
-            <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-500 font-medium">
-              <span className="text-[#0A2540] font-semibold">Core Disciplines:</span>
-              <span>Steel Fenestration</span>
-              <span className="text-slate-300">·</span>
-              <span>Architectural Aluminum</span>
-              <span className="text-slate-300">·</span>
-              <span>Engineered Wood</span>
-              <span className="text-slate-300">·</span>
-              <span>Multi-Chamber PVC</span>
-              <span className="text-slate-300">·</span>
-              <span className="text-[#C59A45] font-semibold">Glass-Only Supply</span>
+            <div>
+              <h3 className="text-lg font-bold leading-7 text-[#0A2540]">ALUMINUM ARCHITECTURAL SYSTEMS</h3>
+              <p>
+                Storefronts, curtain walls, office partitions, balcony glazing and railing systems, shower enclosures, commercial entrances, and large-format specialty sliding systems are supplied as aluminum systems. Standard sliding windows and doors may also be available in other materials.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold leading-7 text-[#0A2540]">GLASS-ONLY SUPPLY</h3>
+              <p>
+                Need glass without frames? We supply glass separately for storefronts, curtain walls, windows, doors, balconies, and showers - manufactured to your project drawings and specifications.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold leading-7 text-[#0A2540]">DRAWINGS, TAKEOFFS &amp; PROJECT SERVICES</h3>
+              <p>
+                Send us your architectural drawings and schedules. SWAP will prepare takeoffs, review the scope, and follow up promptly. Services include estimating, design, engineering, shop drawings, fabrication, shop glazing, customs coordination, and distribution.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold leading-7 text-[#0A2540]">INSTALLATION TEAMS &amp; SITE DELIVERY</h3>
+              <p>
+                SWAP can help locate qualified installation teams, including experienced glazing contractors able to provide insurance required for the project. Regardless of order size, we coordinate logistics to your needs and arrange prompt delivery directly to the job site.
+              </p>
             </div>
           </div>
 
-          {/* Right Architectural Visual Composition (Quarty overlapping aesthetic) */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 aspect-[4/5] bg-slate-100">
-              <img
-                src={heroArchitecturalFacade}
-                alt="Modern architectural glass facade with slim aluminum windows"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-
-              {/* Overlaid Editorial Glass Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-5 rounded-xl border border-slate-100 shadow-lg">
-                <div className="flex items-center justify-between text-xs font-semibold text-[#0A2540] mb-1">
-                  <span>ARCHITECTURAL GLAZING</span>
-                  <span className="text-[#C59A45]">USA & EU TESTED</span>
-                </div>
-                <p className="text-xs text-slate-600 line-clamp-2">
-                  Commercial facades, ultra-slim steel sightlines, and Reynaers SL38 systems supplied directly to your job site.
-                </p>
-              </div>
-            </div>
-
-            {/* Decorative Subtle Floating Card with Logo Blue Gradient */}
-            <div className="hidden sm:block absolute -top-6 -left-8 bg-gradient-to-br from-[#00132B] via-[#002148] to-[#0D3B73] text-white p-4 rounded-xl shadow-xl max-w-[200px] border border-[#17467B]/70">
-              <div className="text-[10px] uppercase font-bold tracking-wider text-[#E6C687] mb-0.5">
-                Reynaers SL38
-              </div>
-              <div className="text-xs font-medium text-slate-200">
-                Special discount pricing on slim-profile systems.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Elegant Statistics Strip (Quarty inspired) */}
-        <div className="mt-16 pt-12 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0A2540]">
-              04
-            </div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-              Material Options
-            </div>
-            <div className="text-xs text-slate-500">
-              Steel, Wood, Aluminum, and PVC
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0A2540]">
-              100%
-            </div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-              Project Takeoffs
-            </div>
-            <div className="text-xs text-slate-500">
-              Prepared directly from your drawings
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0A2540]">
-              Dual
-            </div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-              Tested Standards
-            </div>
-            <div className="text-xs text-slate-500">
-              USA Tested & European Tested
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0A2540]">
-              Direct
-            </div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-              Job-Site Delivery
-            </div>
-            <div className="text-xs text-slate-500">
-              Prompt coordination regardless of order size
-            </div>
-          </div>
-        </div>
+          <p className="mt-9 text-base leading-8 text-slate-600 sm:text-lg">
+            Ask about special discount pricing on Reynaers SL38 slim-profile aluminum systems. Send us your plans for project-specific pricing - we look forward to working with you.
+          </p>
+          <p className="mt-7 text-base text-slate-600">Sincerely,</p>
+          <p className="mt-1 text-base font-bold text-[#0A2540]">SWAP WINDOWS CORP.</p>
+        </article>
       </div>
     </section>
   );

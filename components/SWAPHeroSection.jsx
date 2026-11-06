@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Building2 } from 'lucide-react';
 const swapBuildingFacade = "/images/swap_building_facade_1793362746018.jpg";
 
 export default function SWAPHeroSection({ onNavigate, onOpenQuote }) {
@@ -56,24 +55,6 @@ export default function SWAPHeroSection({ onNavigate, onOpenQuote }) {
 
       
       </section>
-
-      <section className="py-12 md:py-16 bg-white border-b border-slate-200 bg-architectural-grid relative">
-        <div className="max-w-5xl mx-auto px-4 sm:px-8 text-center space-y-4 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A2540]/5 border border-[#0A2540]/15 text-xs font-bold text-[#0A2540] uppercase tracking-widest">
-            <Building2 className="w-3.5 h-3.5 text-[#C59A45]" />
-            <span>High-End Architectural Fenestration</span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[#0A2540] leading-tight tracking-tight">
-            Welcome to SWAP Windows Corp.
-          </h1>
-
-          <p className="text-lg sm:text-xl text-slate-800 font-semibold italic max-w-3xl mx-auto leading-relaxed">
-            “Upgrade Every Project — Commercial & Residential — with Premium, Energy-Efficient Windows and Doors.”
-          </p>
-        </div>
-      </section>
-
     </div>
   );
 }

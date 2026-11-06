@@ -7,7 +7,6 @@ import {
   X,
   ArrowUpRight,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 import { MATERIAL_CATEGORIES } from '@/data/companyData';
 
@@ -26,11 +25,11 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
+    { id: 'about', label: 'About' },
     { id: 'products', label: 'Products', hasDropdown: true },
-    { id: 'projects', label: 'Swap Projects' },
+    { id: 'projects', label: 'Projects' },
     { id: 'brands', label: 'Brands' },
-    { id: 'contact', label: 'Contact Us' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   return (
@@ -56,8 +55,8 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
       <div
         className={`w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 py-3.5'
-            : 'bg-white border-b border-slate-100 py-4.5'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 py-4'
+            : 'bg-white border-b border-slate-100 py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-8">
@@ -71,16 +70,15 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               <img
                 src="/swap-logo-transparent.png"
                 alt="SWAP Windows Corp."
-                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               />
             </button>
           </div>
 
           {/* Zone 2: Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-7 text-base font-medium text-slate-700">
+          <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-slate-700">
             {navItems.map((item) => {
               const isActive = currentRoute === item.id;
-              const isDisabled = item.id !== 'home';
               if (item.hasDropdown) {
                 return (
                   <div
@@ -90,12 +88,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                     onMouseLeave={() => setProductsDropdownOpen(false)}
                   >
                     <button
-                      disabled={isDisabled}
-                      aria-disabled={isDisabled}
-                      className={`flex items-center gap-1.5 py-2 transition-colors whitespace-nowrap shrink-0 ${
-                        isDisabled
-                          ? 'text-slate-600 cursor-not-allowed'
-                          : isActive
+                      onClick={() => onNavigate('products')}
+                      className={`flex items-center gap-1.5 py-2.5 transition-colors whitespace-nowrap shrink-0 ${
+                        isActive
                             ? 'text-[#0A2540] font-semibold'
                             : 'text-slate-600 hover:text-[#0A2540]'
                       }`}
@@ -108,65 +103,30 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                       />
                     </button>
 
-                    {/* Rich Architectural Mega Dropdown */}
+                    {/* Compact product menu */}
                     {productsDropdownOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-[760px] bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 z-50 grid grid-cols-12 gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <div className="col-span-5 relative overflow-hidden rounded-xl min-h-[310px] bg-[#0A2540]">
-                          <img
-                            src="/images/hero_architectural_facade_1793359234348.jpg"
-                            alt="Architectural windows and facade"
-                            className="absolute inset-0 w-full h-full object-cover opacity-65"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#06182c] via-[#06182c]/40 to-transparent" />
-                          <div className="relative h-full min-h-[310px] p-5 flex flex-col justify-end text-white">
-                            <Sparkles className="w-5 h-5 text-[#E6C687] mb-3" />
-                            <p className="text-[11px] uppercase tracking-[0.18em] text-[#E6C687] font-bold">
-                              Built for better spaces
-                            </p>
-                            <h3 className="mt-1 text-2xl font-heading font-bold leading-tight">
-                              Premium systems for every project.
-                            </h3>
-                            <p className="mt-2 text-xs leading-relaxed text-slate-200">
-                              Explore precision windows, doors, and architectural glass.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="col-span-7 p-2">
-                          <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 pb-2 border-b border-slate-100">
-                            SWAP Products
-                          </div>
-                          <ul className="space-y-2">
-                            {[
-                              { letter: 'S', name: 'Steel', description: 'Strong, modern steel systems' },
-                              { letter: 'W', name: 'Wood', description: 'Warm, natural wood systems' },
-                              { letter: 'A', name: 'Aluminum', description: 'Slim, durable aluminum systems' },
-                              { letter: 'P', name: 'PVC', description: 'Efficient, low-maintenance PVC systems' },
-                            ].map((product) => (
-                              <li key={product.letter}>
-                                <button
-                                  disabled
-                                  className="w-full text-left p-2.5 rounded-lg transition-colors group flex items-center justify-between text-slate-400 cursor-not-allowed"
-                                >
-                                  <div className="flex items-center gap-3">
-                                    <span className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-[#0A2540] font-bold">
-                                      {product.letter}
-                                    </span>
-                                    <div>
-                                      <div className="text-sm font-semibold text-slate-500">
-                                        {product.name}
-                                      </div>
-                                      <div className="text-xs text-slate-400 line-clamp-1">
-                                        {product.description}
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-52 rounded-xl bg-white p-2 shadow-xl border border-slate-200 animate-in fade-in slide-in-from-top-2 duration-200">
+                        {MATERIAL_CATEGORIES.map((material) => (
+                          <button
+                            key={material.id}
+                            onClick={() => {
+                              setProductsDropdownOpen(false);
+                              onNavigate('products', { category: material.id });
+                            }}
+                            className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
+                          >
+                            {material.shortName} windows & doors
+                          </button>
+                        ))}
+                        <button
+                          onClick={() => {
+                            setProductsDropdownOpen(false);
+                            onNavigate('products', { category: 'glass' });
+                          }}
+                          className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
+                        >
+                          Glass-only supply
+                        </button>
                       </div>
                     )}
                   </div>
@@ -176,13 +136,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               return (
                 <button
                   key={item.id}
-                  disabled={isDisabled}
-                  aria-disabled={isDisabled}
-                  onClick={() => !isDisabled && onNavigate(item.id)}
-                  className={`py-2 transition-colors whitespace-nowrap shrink-0 relative flex items-center gap-1.5 ${
-                    isDisabled
-                      ? 'text-slate-600 cursor-not-allowed'
-                      : isActive
+                  onClick={() => onNavigate(item.id)}
+                  className={`py-2.5 transition-colors whitespace-nowrap shrink-0 relative flex items-center gap-1.5 ${
+                    isActive
                       ? 'text-[#0A2540] font-semibold'
                       : 'text-slate-600 hover:text-[#0A2540]'
                   }`}
@@ -232,21 +188,17 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           <div className="space-y-6">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => {
-                const isDisabled = item.id !== 'home';
                 return (
                 <button
                   key={item.id}
-                  disabled={isDisabled}
-                  aria-disabled={isDisabled}
                   onClick={() => {
-                    if (isDisabled) return;
                     setMobileMenuOpen(false);
                     onNavigate(item.id);
                   }}
                   className={`text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between ${
                     currentRoute === item.id
                       ? 'text-[#0A2540] font-bold'
-                      : isDisabled ? 'text-slate-600 cursor-not-allowed' : 'text-slate-800'
+                      : 'text-slate-800'
                   }`}
                 >
                   <span>{item.label}</span>

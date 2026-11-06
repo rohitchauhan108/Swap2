@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import {
   Phone,
   Mail,
-  Globe,
   Upload,
   CheckCircle2,
   FileText,
@@ -168,22 +167,6 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-9 h-9 rounded-lg bg-[#0A2540]/5 flex items-center justify-center text-[#0A2540] shrink-0 mt-0.5">
-                      <Globe className="w-4 h-4 text-[#C59A45]" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-                        Corporate Headquarters
-                      </div>
-                      <div className="text-sm font-bold text-slate-800 mt-0.5">
-                        {COMPANY_INFO.address}
-                      </div>
-                      <div className="text-[11px] text-slate-500 mt-0.5">
-                        Serving Glazing Contractors Nationwide & Internationally
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
