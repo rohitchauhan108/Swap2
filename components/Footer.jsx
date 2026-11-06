@@ -32,17 +32,23 @@ export default function Footer({ onNavigate, onOpenQuote }) {
             <p className="max-w-sm text-sm leading-relaxed text-slate-300">Premium fenestration supply for glazing contractors, dealers, builders and architects across the USA, Canada and Europe.</p>
           </div>
 
-          <div className="space-y-3">
-            <div className="text-sm font-bold uppercase tracking-wider text-white border-b border-[#1E3A5F] pb-3">
-              Website
+          <div className="space-y-4">
+            <div className="flex items-center justify-between border-b border-[#1E3A5F] pb-3">
+              <span className="text-sm font-bold uppercase tracking-wider text-white">Website</span>
+              <span className="text-xs uppercase tracking-wider text-[#E6C687]">Explore</span>
             </div>
-            <ul className="space-y-2 text-slate-300 text-sm">
-              <li><a href="#" className="hover:text-white">Home</a></li>
-              <li><a href="#" className="hover:text-white">About</a></li>
-              <li><a href="#" className="hover:text-white">Projects</a></li>
-              <li><a href="#" className="hover:text-white">Brands</a></li>
-              <li><a href="#" className="hover:text-white">Contact</a></li>
-            </ul>
+            <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-2">
+              {['Home', 'About', 'Projects', 'Brands', 'Contact'].map((label) => (
+                <a
+                  key={label}
+                  href="#"
+                  className="group flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-sm text-slate-300 transition-all hover:border-[#C59A45]/40 hover:bg-white/5 hover:text-white"
+                >
+                  <span>{label}</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-slate-500 transition-colors group-hover:text-[#E6C687]" />
+                </a>
+              ))}
+            </nav>
           </div>
 
           {/* Column 4: Official Contact */}

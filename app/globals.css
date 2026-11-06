@@ -123,6 +123,23 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.product-marquee-track {
+  animation: product-marquee 42s linear infinite;
+}
+
+.product-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes product-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Authentic SWAP Logo Gradient Palettes */
 .bg-swap-navy-gradient {
   background: linear-gradient(135deg, #00142E 0%, #002148 45%, #0B366B 100%);

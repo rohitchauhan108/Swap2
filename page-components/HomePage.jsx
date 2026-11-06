@@ -2,6 +2,8 @@
 
 import React from 'react';
 import SWAPHeroSection from '@/components/SWAPHeroSection';
+import ProductMarquee from '@/components/ProductMarquee';
+import WelcomeSection from '@/components/WelcomeSection';
 import TradePartnershipSection from '@/components/TradePartnershipSection';
 
 const HOME_BRANDS = [
@@ -15,6 +17,13 @@ const HOME_BRANDS = [
   { name: 'Guardian Glass', logo: '/brands/glass/guardian-glass.png', url: 'https://www.guardianglass.com/' },
   { name: 'Press Glass', logo: '/brands/glass/pressglass.png', url: 'https://www.pressglass.com/' },
   { name: 'AGC', logo: '/brands/glass/agc.png', url: 'https://www.agc.com/' },
+  { name: 'Veratec', logo: '/brands/veratec.png', url: 'https://www.veratec.com/' },
+  { name: 'Aluwood', logo: '/brands/aluwood.png', url: 'https://www.aluwood.com/' },
+  { name: 'Forster', logo: '/brands/forester.png', url: 'https://www.forstersystems.ch/' },
+  { name: 'ASAS', logo: '/brands/asas.png', url: 'https://www.asasalu.com/' },
+  { name: 'Otto Stumm', logo: '/brands/ottostumm.png', url: 'https://ottostumm-mogs.com/en/' },
+  { name: 'Aluplast', logo: '/brands/aluplast.png', url: 'https://www.aluplast.com.pl/en' },
+  { name: 'Aliplast', logo: '/brands/aliplast.png', url: 'https://www.aliplast.com/en' },
 ];
 
 export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
@@ -22,6 +31,8 @@ export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
     <div className="w-full bg-[#FAFAFA]">
       {/* 1. NEW SWAP HERO SECTION (S - Steel, W - Wood, A - Aluminum, P - PVC in our architectural theme) */}
       <SWAPHeroSection onNavigate={onNavigate} onOpenQuote={onOpenQuote} />
+      <ProductMarquee />
+      <WelcomeSection />
       <TradePartnershipSection />
 
       {/* Brand partners */}

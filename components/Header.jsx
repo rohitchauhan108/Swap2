@@ -78,7 +78,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           {/* Zone 2: Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-slate-700">
             {navItems.map((item) => {
-              const isActive = currentRoute === item.id;
+              const isActive = item.id === 'home' && currentRoute === 'home';
               if (item.hasDropdown) {
                 return (
                   <div
@@ -87,8 +87,8 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                     onMouseEnter={() => setProductsDropdownOpen(true)}
                     onMouseLeave={() => setProductsDropdownOpen(false)}
                   >
-                    <button
-                      onClick={() => onNavigate('products')}
+                    <a
+                      href="#"
                       className={`flex items-center gap-1.5 py-2.5 transition-colors whitespace-nowrap shrink-0 ${
                         isActive
                             ? 'text-[#0A2540] font-semibold'
@@ -101,39 +101,33 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                           productsDropdownOpen ? 'rotate-180 text-[#0A2540]' : 'text-slate-400'
                         }`}
                       />
-                    </button>
+                    </a>
 
                     {/* Compact product menu */}
                     {productsDropdownOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-52 rounded-xl bg-white p-2 shadow-xl border border-slate-200 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="absolute top-full left-1/2 z-50 w-64 -translate-x-1/2 rounded-xl border border-slate-200 bg-white p-2 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
                         {MATERIAL_CATEGORIES.map((material) => (
-                          <button
+                          <a
                             key={material.id}
-                            onClick={() => {
-                              setProductsDropdownOpen(false);
-                              onNavigate('products', { category: material.id });
-                            }}
-                            className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
+                            href="#"
+                            className="block w-full rounded-lg px-3 py-2 text-left text-sm leading-5 text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
                           >
                             {material.shortName} windows & doors
-                          </button>
+                          </a>
                         ))}
-                        <button
-                          onClick={() => {
-                            setProductsDropdownOpen(false);
-                            onNavigate('products', { category: 'glass' });
-                          }}
-                          className="w-full rounded-lg px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
+                        <a
+                          href="#"
+                          className="block w-full rounded-lg px-3 py-2 text-left text-sm leading-5 text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
                         >
                           Glass-only supply
-                        </button>
+                        </a>
                       </div>
                     )}
                   </div>
                 );
               }
 
-              return (
+              return item.id === 'home' ? (
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
@@ -148,6 +142,14 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                     <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C59A45]" />
                   )}
                 </button>
+              ) : (
+                <a
+                  key={item.id}
+                  href="#"
+                  className="py-2.5 transition-colors whitespace-nowrap shrink-0 text-slate-600 hover:text-[#0A2540]"
+                >
+                  {item.label}
+                </a>
               );
             })}
           </nav>
@@ -188,7 +190,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           <div className="space-y-6">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => {
-                return (
+                return item.id === 'home' ? (
                 <button
                   key={item.id}
                   onClick={() => {
@@ -204,6 +206,16 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                   <span>{item.label}</span>
                   <ArrowUpRight className="w-4 h-4 text-slate-400" />
                 </button>
+                ) : (
+                <a
+                  key={item.id}
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between text-slate-800"
+                >
+                  <span>{item.label}</span>
+                  <ArrowUpRight className="w-4 h-4 text-slate-400" />
+                </a>
                 );
               })}
             </nav>
@@ -215,26 +227,22 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               </div>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {MATERIAL_CATEGORIES.map((m) => (
-                  <button
+                  <a
                     key={m.id}
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      onNavigate('products', { category: m.id });
-                    }}
+                    href="#"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="p-3 text-left bg-slate-50 rounded-lg hover:bg-slate-100 text-slate-800 font-medium"
                   >
                     {m.shortName} Windows
-                  </button>
+                  </a>
                 ))}
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onNavigate('products', { category: 'glass' });
-                  }}
+                <a
+                  href="#"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="col-span-2 p-3 text-left bg-slate-50 rounded-lg hover:bg-slate-100 text-slate-800 font-medium"
                 >
                   Glass-Only Supply (Without Frames)
-                </button>
+                </a>
               </div>
             </div>
           </div>
