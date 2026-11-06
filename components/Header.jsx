@@ -1,19 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import {
-  ChevronDown,
-  Menu,
-  X,
-  ArrowUpRight,
-  ShieldCheck,
-} from 'lucide-react';
-import { MATERIAL_CATEGORIES } from '@/data/companyData';
-
+import { Menu, X, ArrowUpRight, ShieldCheck } from 'lucide-react';
 export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,9 +17,6 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'projects', label: 'Projects' },
-    { id: 'about', label: 'About' },
-    { id: 'products', label: 'Products', hasDropdown: true },
-    { id: 'brands', label: 'Brands' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -79,68 +67,6 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-slate-700">
             {navItems.map((item) => {
               const isActive = ['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id;
-              if (item.hasDropdown) {
-                return (
-                  <div
-                    key={item.id}
-                    className="relative"
-                    onMouseEnter={() => setProductsDropdownOpen(true)}
-                    onMouseLeave={() => setProductsDropdownOpen(false)}
-                  >
-                    <a
-                      href="/products"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        onNavigate('products');
-                      }}
-                      className={`flex items-center gap-1.5 py-2.5 transition-colors whitespace-nowrap shrink-0 ${
-                        isActive
-                            ? 'text-[#0A2540] font-semibold'
-                            : 'text-slate-600 hover:text-[#0A2540]'
-                      }`}
-                    >
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          productsDropdownOpen ? 'rotate-180 text-[#0A2540]' : 'text-slate-400'
-                        }`}
-                      />
-                    </a>
-
-                    {/* Compact product menu */}
-                    {productsDropdownOpen && (
-                      <div className="absolute top-full left-1/2 z-50 w-64 -translate-x-1/2 rounded-xl border border-slate-200 bg-white p-2 shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
-                        {MATERIAL_CATEGORIES.map((material) => (
-                          <a
-                            key={material.id}
-                            href={`/products?category=${material.id}`}
-                            onClick={(event) => {
-                              event.preventDefault();
-                              setProductsDropdownOpen(false);
-                              onNavigate('products', { category: material.id });
-                            }}
-                            className="block w-full rounded-lg px-3 py-2 text-left text-sm leading-5 text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
-                          >
-                            {material.shortName} windows & doors
-                          </a>
-                        ))}
-                        <a
-                          href="/products"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            setProductsDropdownOpen(false);
-                            onNavigate('products');
-                          }}
-                          className="block w-full rounded-lg px-3 py-2 text-left text-sm leading-5 text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
-                        >
-                          Glass-only supply
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
               return (
                 <button
                   key={item.id}
@@ -218,39 +144,6 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               })}
             </nav>
 
-            {/* Quick materials list in mobile drawer */}
-            <div className="pt-2">
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-                Materials & Systems
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                {MATERIAL_CATEGORIES.map((m) => (
-                  <a
-                    key={m.id}
-                    href={`/products?category=${m.id}`}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setMobileMenuOpen(false);
-                      onNavigate('products', { category: m.id });
-                    }}
-                    className="p-3 text-left bg-slate-50 rounded-lg hover:bg-slate-100 text-slate-800 font-medium"
-                  >
-                    {m.shortName} Windows
-                  </a>
-                ))}
-                <a
-                  href="/products"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setMobileMenuOpen(false);
-                    onNavigate('products');
-                  }}
-                  className="col-span-2 p-3 text-left bg-slate-50 rounded-lg hover:bg-slate-100 text-slate-800 font-medium"
-                >
-                  Glass-Only Supply (Without Frames)
-                </a>
-              </div>
-            </div>
           </div>
 
           <div className="pt-8 border-t border-slate-200 mt-8 space-y-4">
