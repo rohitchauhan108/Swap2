@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function TradePartnershipSection() {
   return (
-    <section className="bg-white py-16 md:py-20">
+    <section className="bg-white py-8 md:py-10">
       <div className="mx-auto max-w-4xl px-4 sm:px-8">
         <article className="border-y border-slate-200 py-8 text-center md:py-10">
           <div className="mb-8 text-center">

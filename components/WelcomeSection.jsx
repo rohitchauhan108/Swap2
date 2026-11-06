@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function WelcomeSection() {
   return (
-    <section className="bg-white py-16 md:py-20">
+    <section className="bg-white pb-8 pt-12 md:pb-10 md:pt-14">
       <div className="mx-auto max-w-5xl px-4 text-center sm:px-8">
         <h2 className="text-4xl font-heading font-bold leading-tight text-[#0A2540] sm:text-5xl">
           Welcome to SWAP Windows Corp
