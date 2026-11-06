@@ -25,9 +25,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
 
   const navItems = [
     { id: 'home', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
     { id: 'about', label: 'About' },
     { id: 'products', label: 'Products', hasDropdown: true },
-    { id: 'projects', label: 'Projects' },
     { id: 'brands', label: 'Brands' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -78,7 +78,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           {/* Zone 2: Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-slate-700">
             {navItems.map((item) => {
-              const isActive = item.id === 'home' && currentRoute === 'home';
+              const isActive = ['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id;
               if (item.hasDropdown) {
                 return (
                   <div
@@ -88,7 +88,11 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                     onMouseLeave={() => setProductsDropdownOpen(false)}
                   >
                     <a
-                      href="#"
+                      href="/products"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        onNavigate('products');
+                      }}
                       className={`flex items-center gap-1.5 py-2.5 transition-colors whitespace-nowrap shrink-0 ${
                         isActive
                             ? 'text-[#0A2540] font-semibold'
@@ -109,14 +113,24 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                         {MATERIAL_CATEGORIES.map((material) => (
                           <a
                             key={material.id}
-                            href="#"
+                            href={`/products?category=${material.id}`}
+                            onClick={(event) => {
+                              event.preventDefault();
+                              setProductsDropdownOpen(false);
+                              onNavigate('products', { category: material.id });
+                            }}
                             className="block w-full rounded-lg px-3 py-2 text-left text-sm leading-5 text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
                           >
                             {material.shortName} windows & doors
                           </a>
                         ))}
                         <a
-                          href="#"
+                          href="/products"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            setProductsDropdownOpen(false);
+                            onNavigate('products');
+                          }}
                           className="block w-full rounded-lg px-3 py-2 text-left text-sm leading-5 text-slate-600 hover:bg-slate-50 hover:text-[#0A2540]"
                         >
                           Glass-only supply
@@ -127,10 +141,11 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                 );
               }
 
-              return item.id === 'home' ? (
+              return (
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`py-2.5 transition-colors whitespace-nowrap shrink-0 relative flex items-center gap-1.5 ${
                     isActive
                       ? 'text-[#0A2540] font-semibold'
@@ -142,14 +157,6 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                     <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C59A45]" />
                   )}
                 </button>
-              ) : (
-                <a
-                  key={item.id}
-                  href="#"
-                  className="py-2.5 transition-colors whitespace-nowrap shrink-0 text-slate-600 hover:text-[#0A2540]"
-                >
-                  {item.label}
-                </a>
               );
             })}
           </nav>
@@ -190,32 +197,23 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           <div className="space-y-6">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => {
-                return item.id === 'home' ? (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onNavigate(item.id);
-                  }}
-                  className={`text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between ${
-                    currentRoute === item.id
-                      ? 'text-[#0A2540] font-bold'
-                      : 'text-slate-800'
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400" />
-                </button>
-                ) : (
-                <a
-                  key={item.id}
-                  href="#"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between text-slate-800"
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400" />
-                </a>
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onNavigate(item.id);
+                    }}
+                    aria-current={['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id ? 'page' : undefined}
+                    className={`text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between ${
+                      ['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id
+                        ? 'text-[#0A2540] font-bold'
+                        : 'text-slate-800'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    <ArrowUpRight className="w-4 h-4 text-slate-400" />
+                  </button>
                 );
               })}
             </nav>
@@ -229,16 +227,24 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                 {MATERIAL_CATEGORIES.map((m) => (
                   <a
                     key={m.id}
-                    href="#"
-                    onClick={() => setMobileMenuOpen(false)}
+                    href={`/products?category=${m.id}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setMobileMenuOpen(false);
+                      onNavigate('products', { category: m.id });
+                    }}
                     className="p-3 text-left bg-slate-50 rounded-lg hover:bg-slate-100 text-slate-800 font-medium"
                   >
                     {m.shortName} Windows
                   </a>
                 ))}
                 <a
-                  href="#"
-                  onClick={() => setMobileMenuOpen(false)}
+                  href="/products"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setMobileMenuOpen(false);
+                    onNavigate('products');
+                  }}
                   className="col-span-2 p-3 text-left bg-slate-50 rounded-lg hover:bg-slate-100 text-slate-800 font-medium"
                 >
                   Glass-Only Supply (Without Frames)

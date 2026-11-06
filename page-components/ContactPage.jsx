@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import {
   Phone,
   Mail,
-  Upload,
   CheckCircle2,
-  FileText,
-  X,
   ArrowRight,
   ShieldCheck,
   Truck,
@@ -26,23 +23,8 @@ export default function ContactPage() {
     message: '',
   });
 
-  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
-
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files).map((f) => ({
-        name: f.name,
-        size: (f.size / (1024 * 1024)).toFixed(2) + ' MB',
-      }));
-      setUploadedFiles((prev) => [...prev, ...files]);
-    }
-  };
-
-  const removeFile = (index) => {
-    setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
-  };
 
   const validate = () => {
     const errs = {};
@@ -97,7 +79,7 @@ export default function ContactPage() {
             <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
               Trade Communications & Estimating
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-[#0A2540] tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
               Contact Us & Submit Takeoffs.
             </h1>
             <p className="text-base sm:text-lg text-slate-600 font-light leading-relaxed">
@@ -236,10 +218,6 @@ export default function ContactPage() {
                         <span className="text-slate-500">Project Type:</span>
                         <span className="font-semibold text-slate-800">{formData.projectType}</span>
                       </div>
-                      <div className="flex justify-between border-b border-slate-200 pb-2">
-                        <span className="text-slate-500">Drawings Attached:</span>
-                        <span className="font-semibold text-slate-800">{uploadedFiles.length} file(s)</span>
-                      </div>
                       <div className="flex justify-between">
                         <span className="text-slate-500">Direct Contact:</span>
                         <span className="font-semibold text-[#0A2540]">{COMPANY_INFO.phone}</span>
@@ -249,7 +227,6 @@ export default function ContactPage() {
                     <button
                       onClick={() => {
                         setSubmitted(false);
-                        setUploadedFiles([]);
                         setFormData({
                           name: '',
                           company: '',
@@ -370,53 +347,6 @@ export default function ContactPage() {
                           <option value="Institutional">Hospitality / Institutional</option>
                         </select>
                       </div>
-                    </div>
-
-                    {/* File Upload Zone */}
-                    <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
-                        Upload Drawings & Schedules (CAD, PDF, Excel)
-                      </label>
-                      <div className="border-2 border-dashed border-slate-300 rounded-xl p-5 text-center hover:bg-slate-50 transition-colors cursor-pointer relative">
-                        <input
-                          type="file"
-                          multiple
-                          onChange={handleFileChange}
-                          className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                          title="Upload architectural files"
-                        />
-                        <Upload className="w-7 h-7 text-slate-400 mx-auto mb-1.5" />
-                        <div className="text-xs font-semibold text-slate-700">
-                          Click to select or drag and drop your drawings
-                        </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5">
-                          Supports PDF architectural sheets, DWG/DXF files, Excel schedules, ZIP
-                        </div>
-                      </div>
-
-                      {uploadedFiles.length > 0 && (
-                        <div className="mt-3 space-y-1.5">
-                          {uploadedFiles.map((file, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center justify-between text-xs bg-slate-50 border border-slate-200 px-3 py-2 rounded-lg"
-                            >
-                              <div className="flex items-center gap-2 truncate">
-                                <FileText className="w-4 h-4 text-[#0A2540] shrink-0" />
-                                <span className="truncate font-semibold text-slate-800">{file.name}</span>
-                                <span className="text-slate-400">({file.size})</span>
-                              </div>
-                              <button
-                                type="button"
-                                onClick={() => removeFile(i)}
-                                className="text-slate-400 hover:text-red-500"
-                              >
-                                <X className="w-4 h-4" />
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      )}
                     </div>
 
                     <div>
