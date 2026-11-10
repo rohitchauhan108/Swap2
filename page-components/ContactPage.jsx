@@ -8,7 +8,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Truck,
-  HelpCircle
+  HelpCircle,
+  ChevronDown
 } from 'lucide-react';
 import { COMPANY_INFO } from '@/data/companyData';
 
@@ -25,6 +26,7 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [openFaq, setOpenFaq] = useState(null);
 
   const validate = () => {
     const errs = {};
@@ -103,7 +105,7 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-heading font-bold text-[#0A2540]">
                     SWAP Windows Corp.
                   </h3>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-sm text-slate-500">
                     A Partnership Built for the Window Trade
                   </p>
                 </div>
@@ -114,18 +116,12 @@ export default function ContactPage() {
                       <Phone className="w-4 h-4 text-[#C59A45]" />
                     </div>
                     <div>
-                      <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-                        Toll-Free Phone
-                      </div>
                       <a
                         href={`tel:${COMPANY_INFO.phoneClean}`}
                         className="text-base font-bold text-[#0A2540] hover:text-[#C59A45] transition-colors"
                       >
                         {COMPANY_INFO.phone}
                       </a>
-                      <div className="text-[11px] text-slate-500 mt-0.5">
-                        Mon – Fri: 8:00 AM – 6:00 PM EST
-                      </div>
                     </div>
                   </div>
 
@@ -134,16 +130,13 @@ export default function ContactPage() {
                       <Mail className="w-4 h-4 text-[#C59A45]" />
                     </div>
                     <div>
-                      <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-                        Plans & Direct Inquiries
-                      </div>
                       <a
                         href={`mailto:${COMPANY_INFO.email}`}
                         className="text-base font-bold text-[#0A2540] hover:text-[#C59A45] transition-colors"
                       >
                         {COMPANY_INFO.email}
                       </a>
-                      <div className="text-[11px] text-slate-500 mt-0.5">
+                      <div className="text-sm text-slate-500 mt-0.5">
                         Direct delivery for architectural schedules & takeoffs
                       </div>
                     </div>
@@ -172,7 +165,7 @@ export default function ContactPage() {
                 <h4 className="text-lg font-heading font-bold text-white relative z-10">
                   Reynaers SL38 Slim-Profile
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed relative z-10">
+                <p className="text-sm text-slate-300 leading-relaxed relative z-10">
                   Ask about our special trade discount pricing on Reynaers SL38 systems. Send us your plans today for project-specific pricing.
                 </p>
               </div>
@@ -188,7 +181,7 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-heading font-bold text-[#0A2540]">
                     Submit Drawings for Project-Specific Pricing
                   </h3>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-sm text-slate-500">
                     Send us your architectural drawings and schedules. SWAP will prepare takeoffs, review the scope, and follow up promptly.
                   </p>
                 </div>
@@ -203,7 +196,7 @@ export default function ContactPage() {
                       <h4 className="text-2xl font-heading font-bold text-slate-900">
                         Inquiry & Takeoff Received
                       </h4>
-                      <p className="text-sm text-slate-600 max-w-md mx-auto">
+                      <p className="text-base text-slate-600 max-w-md mx-auto">
                         Thank you, <span className="font-semibold text-slate-800">{formData.name}</span>. We have logged your takeoff request for{' '}
                         <span className="font-semibold text-slate-800">{formData.company}</span>. Our estimating team will follow up promptly with scope review and trade pricing.
                       </p>
@@ -393,7 +386,7 @@ export default function ContactPage() {
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
               Frequently Asked Questions.
             </h2>
-            <p className="text-sm text-slate-600 font-light">
+            <p className="text-base text-slate-600 font-light">
               Clarifications for glazing contractors and window dealers partnering with SWAP Windows Corp.
             </p>
           </div>
@@ -402,15 +395,35 @@ export default function ContactPage() {
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-[#FAFAFA] p-6 rounded-xl border border-slate-200 space-y-2"
+                className="bg-[#FAFAFA] rounded-xl border border-slate-200 overflow-hidden"
               >
-                <h4 className="text-base font-heading font-bold text-[#0A2540] flex items-start gap-2">
-                  <span className="text-[#C59A45]">Q.</span>
-                  <span>{faq.q}</span>
+                <h4>
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                    aria-controls={`faq-answer-${i}`}
+                    className="flex w-full items-center justify-between gap-4 p-6 text-left"
+                  >
+                    <span className="flex items-start gap-2 text-base font-heading font-bold text-[#0A2540]">
+                      <span className="text-[#C59A45]">Q.</span>
+                      <span>{faq.q}</span>
+                    </span>
+                    <ChevronDown
+                      className={`h-5 w-5 shrink-0 text-[#C59A45] transition-transform duration-200 ${
+                        openFaq === i ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600 pl-5 leading-relaxed">
-                  {faq.a}
-                </p>
+                {openFaq === i && (
+                  <p
+                    id={`faq-answer-${i}`}
+                    className="px-6 pb-6 pl-11 text-sm leading-relaxed text-slate-600 sm:text-base"
+                  >
+                    {faq.a}
+                  </p>
+                )}
               </div>
             ))}
           </div>

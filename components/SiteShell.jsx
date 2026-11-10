@@ -74,7 +74,7 @@ export default function SiteShell({ children }) {
 
         <main className="flex-1">{children}</main>
 
-        <Footer onNavigate={navigateTo} onOpenQuote={() => openQuote()} />
+        <Footer currentRoute={currentRoute} onNavigate={navigateTo} onOpenQuote={() => openQuote()} />
 
         <QuoteModal
           isOpen={isQuoteModalOpen}

@@ -12,7 +12,7 @@ export default function TradePartnershipSection() {
               STEEL&nbsp; | &nbsp;WOOD&nbsp; | &nbsp;ALUMINUM&nbsp; | &nbsp;PVC
             </p>
             <p className="mt-3 text-sm text-slate-500">
-              877-212-SWAP&nbsp; | &nbsp;SWAP@swapwindows.com&nbsp; | &nbsp;swapwindows.com
+              877-212-7927&nbsp; | &nbsp;SWAP@swapwindows.com&nbsp; | &nbsp;swapwindows.com
             </p>
           </div>
 

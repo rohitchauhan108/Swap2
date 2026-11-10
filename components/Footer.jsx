@@ -4,7 +4,14 @@ import React from 'react';
 import { Phone, Mail, ArrowUpRight } from 'lucide-react';
 import { COMPANY_INFO } from '@/data/companyData';
 
-export default function Footer({ onNavigate, onOpenQuote }) {
+export default function Footer({ currentRoute, onNavigate, onOpenQuote }) {
+  const footerLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   return (
     <footer className="bg-gradient-to-br from-[#061426] via-[#0A2540] to-[#3E301B] text-slate-300 py-10 border-t border-[#163659]">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
@@ -38,16 +45,25 @@ export default function Footer({ onNavigate, onOpenQuote }) {
               <span className="text-xs uppercase tracking-wider text-[#E6C687]">Explore</span>
             </div>
             <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-2">
-              {['Home', 'About', 'Projects', 'Brands', 'Contact'].map((label) => (
-                <a
-                  key={label}
-                  href="#"
-                  className="group flex items-center justify-between rounded-lg border border-transparent px-3 py-2 text-sm text-slate-300 transition-all hover:border-[#C59A45]/40 hover:bg-white/5 hover:text-white"
+              {footerLinks.map((link) => {
+                const isActive = currentRoute === link.id;
+                return (
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => onNavigate(link.id)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`group flex items-center justify-between rounded-lg border px-3 py-2 text-left text-sm transition-all ${
+                    isActive
+                      ? 'border-[#C59A45]/60 bg-white/10 text-white'
+                      : 'border-transparent text-slate-300 hover:border-[#C59A45]/40 hover:bg-white/5 hover:text-white'
+                  }`}
                 >
-                  <span>{label}</span>
-                  <ArrowUpRight className="h-3.5 w-3.5 text-slate-500 transition-colors group-hover:text-[#E6C687]" />
-                </a>
-              ))}
+                  <span>{link.label}</span>
+                  <ArrowUpRight className={`h-3.5 w-3.5 transition-colors ${isActive ? 'text-[#E6C687]' : 'text-slate-500 group-hover:text-[#E6C687]'}`} />
+                </button>
+                );
+              })}
             </nav>
           </div>
 
@@ -58,21 +74,18 @@ export default function Footer({ onNavigate, onOpenQuote }) {
             </div>
             <div className="space-y-3 text-sm">
               <div>
-                <div className="text-slate-400 text-xs">Toll-Free Phone:</div>
                 <a
                   href={`tel:${COMPANY_INFO.phoneClean}`}
-                  className="text-white font-semibold hover:text-[#E6C687] transition-colors flex items-center gap-1.5 mt-0.5"
+                  className="text-white font-semibold hover:text-[#E6C687] transition-colors flex items-center gap-1.5"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#E6C687]" />
                   <span>{COMPANY_INFO.phone}</span>
                 </a>
               </div>
-
               <div>
-                <div className="text-slate-400 text-xs">Direct Takeoffs & Plans:</div>
                 <a
                   href={`mailto:${COMPANY_INFO.email}`}
-                  className="text-white hover:text-[#E6C687] transition-colors flex items-center gap-1.5 mt-0.5"
+                  className="text-white hover:text-[#E6C687] transition-colors flex items-center gap-1.5"
                 >
                   <Mail className="w-3.5 h-3.5 text-[#E6C687]" />
                   <span>{COMPANY_INFO.email}</span>

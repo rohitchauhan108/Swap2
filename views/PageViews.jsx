@@ -7,7 +7,6 @@ import HomePage from '@/page-components/HomePage';
 import AboutPage from '@/page-components/AboutPage';
 import ProductsPage from '@/page-components/ProductsPage';
 import ProjectsPage from '@/page-components/ProjectsPage';
-import BrandsPage from '@/page-components/BrandsPage';
 import ContactPage from '@/page-components/ContactPage';
 
 export function HomeView() {
@@ -36,11 +35,6 @@ export function ProductsView() {
 export function ProjectsView() {
   const { navigateTo, openQuote } = useSite();
   return <ProjectsPage onNavigate={navigateTo} onOpenQuote={openQuote} />;
-}
-
-export function BrandsView() {
-  const { navigateTo, openQuote } = useSite();
-  return <BrandsPage onNavigate={navigateTo} onOpenQuote={openQuote} />;
 }
 
 export function ContactView() {

@@ -16,6 +16,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
 
   const navItems = [
     { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -66,7 +67,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           {/* Zone 2: Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-slate-700">
             {navItems.map((item) => {
-              const isActive = ['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id;
+              const isActive = currentRoute === item.id;
               return (
                 <button
                   key={item.id}
@@ -130,9 +131,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                       setMobileMenuOpen(false);
                       onNavigate(item.id);
                     }}
-                    aria-current={['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id ? 'page' : undefined}
+                    aria-current={currentRoute === item.id ? 'page' : undefined}
                     className={`text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between ${
-                      ['home', 'projects', 'contact'].includes(item.id) && currentRoute === item.id
+                      currentRoute === item.id
                         ? 'text-[#0A2540] font-bold'
                         : 'text-slate-800'
                     }`}

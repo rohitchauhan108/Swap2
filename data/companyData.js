@@ -13,7 +13,7 @@ const swapBuildingFacade = "/images/swap_building_facade_1793362746018.jpg";
 export const COMPANY_INFO = {
   name: "SWAP Windows Corp.",
   tagline: "A Partnership Built for the Window Trade",
-  phone: "877-212-SWAP",
+  phone: "877-212-7927",
   phoneClean: "8772127927",
   email: "SWAP@swapwindows.com",
   website: "https://swapwindows.com/",

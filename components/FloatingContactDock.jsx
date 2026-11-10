@@ -31,7 +31,7 @@ export default function FloatingContactDock() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Chat with SWAP Windows Corp. on WhatsApp (877-212-SWAP)"
+            aria-label="Chat with SWAP Windows Corp. on WhatsApp (877-212-7927)"
             className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-[#128C7E] via-[#25D366] to-[#4ADE80] text-white shadow-md hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
           >
             {/* Animated Glow Halo on Hover */}

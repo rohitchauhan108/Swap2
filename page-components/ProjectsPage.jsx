@@ -147,7 +147,7 @@ export default function ProjectsPage() {
                     setSelectedIndex(null);
                   }}
                   aria-pressed={isActive}
-                  className={`shrink-0 border px-4 py-2.5 text-[10px] font-bold tracking-wide transition-all duration-200 ${
+                  className={`shrink-0 border px-4 py-2.5 text-[10px] font-bold tracking-wide transition-all duration-200 md:px-5 md:py-3 md:text-xs ${
                     isActive
                       ? 'border-[#c59a45] bg-[#c59a45] text-white shadow-md shadow-[#c59a45]/20'
                       : 'border-slate-200 bg-[#f8fafc] text-slate-700 hover:border-[#0a2540] hover:text-[#0a2540]'
