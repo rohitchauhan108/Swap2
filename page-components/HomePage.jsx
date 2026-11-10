@@ -20,7 +20,7 @@ const ALUMINUM_BRANDS = [
 
 const GLASS_BRANDS = [
   { name: 'Sisecam', logo: '/brands/glass/sisecam.png', url: 'https://www.sisecam.com/en' },
-  { name: 'Saint-Gobain', logo: '/brands/glass/saint-goblin.png', url: 'https://www.saint-gobain.com/' },
+  { name: 'Saint-Gobain', logo: '/brands/glass/saint-goblin.png', url: 'https://www.saint-gobain-glass.com/' },
   { name: 'Guardian Glass', logo: '/brands/glass/guardian-glass.png', url: 'https://www.guardianglass.com/' },
   { name: 'Press Glass', logo: '/brands/glass/pressglass.png', url: 'https://www.pressglass.com/' },
   { name: 'AGC', logo: '/brands/glass/agc.png', url: 'https://www.agc.com/' },

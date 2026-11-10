@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingContactDock from '@/components/FloatingContactDock';
-import QuoteModal from '@/components/QuoteModal';
 import ProductDetailModal from '@/components/ProductDetailModal';
 import CustomCursor from '@/components/CustomCursor';
 
@@ -31,8 +30,6 @@ export default function SiteShell({ children }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [quoteInitialSystem, setQuoteInitialSystem] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Header expects 'home' | 'about' | 'products' ...
@@ -46,15 +43,10 @@ export default function SiteShell({ children }) {
     [router]
   );
 
-  const openQuote = useCallback((systemName = '') => {
-    setQuoteInitialSystem(typeof systemName === 'string' ? systemName : '');
-    setIsQuoteModalOpen(true);
-  }, []);
-
-  const closeQuote = () => {
-    setIsQuoteModalOpen(false);
-    setQuoteInitialSystem('');
-  };
+  const openQuote = useCallback(() => {
+    router.push('/contact');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [router]);
 
   const value = {
     navigateTo,
@@ -75,12 +67,6 @@ export default function SiteShell({ children }) {
         <main className="flex-1">{children}</main>
 
         <Footer currentRoute={currentRoute} onNavigate={navigateTo} onOpenQuote={() => openQuote()} />
-
-        <QuoteModal
-          isOpen={isQuoteModalOpen}
-          onClose={closeQuote}
-          initialSystem={quoteInitialSystem}
-        />
 
         <ProductDetailModal
           product={selectedProduct}
