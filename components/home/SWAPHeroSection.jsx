@@ -3,7 +3,7 @@
 import React from 'react';
 const swapBuildingFacade = "/images/swap_building_facade_1793362746018.jpg";
 
-export default function SWAPHeroSection({ onNavigate, onOpenQuote }) {
+export default function SWAPHeroSection({ onNavigate }) {
 
   const swapDisciplines = [
     { letter: 'S', title: 'Steel', category: 'steel' },

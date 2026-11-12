@@ -2,11 +2,11 @@
 
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import FloatingContactDock from '@/components/FloatingContactDock';
-import ProductDetailModal from '@/components/ProductDetailModal';
-import CustomCursor from '@/components/CustomCursor';
+import Header from '@/components/ui/Header';
+import Footer from '@/components/ui/Footer';
+import FloatingContactDock from '@/components/ui/FloatingContactDock';
+import ProductDetailModal from '@/components/ui/ProductDetailModal';
+import CustomCursor from '@/components/ui/CustomCursor';
 
 const SiteContext = createContext(null);
 

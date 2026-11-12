@@ -1,5 +1,5 @@
 import './globals.css';
-import SiteShell from '@/components/SiteShell';
+import SiteShell from '@/components/ui/SiteShell';
 
 const title = 'SWAP Windows Corp. — Architectural Windows & Glazing Systems';
 const description =

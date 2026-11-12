@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useSite } from '@/components/SiteShell';
+import { useSite } from '@/components/ui/SiteShell';
 import HomePage from '@/page-components/HomePage';
 import AboutPage from '@/page-components/AboutPage';
 import ProductsPage from '@/page-components/ProductsPage';
@@ -10,8 +10,8 @@ import ProjectsPage from '@/page-components/ProjectsPage';
 import ContactPage from '@/page-components/ContactPage';
 
 export function HomeView() {
-  const { navigateTo, openQuote, selectProduct } = useSite();
-  return <HomePage onNavigate={navigateTo} onOpenQuote={openQuote} onSelectProduct={selectProduct} />;
+  const { navigateTo } = useSite();
+  return <HomePage onNavigate={navigateTo} />;
 }
 
 export function AboutView() {

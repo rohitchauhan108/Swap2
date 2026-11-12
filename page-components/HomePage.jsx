@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import SWAPHeroSection from '@/components/SWAPHeroSection';
-import ProductMarquee from '@/components/ProductMarquee';
-import WelcomeSection from '@/components/WelcomeSection';
-import TradePartnershipSection from '@/components/TradePartnershipSection';
+import SWAPHeroSection from '@/components/home/SWAPHeroSection';
+import ProductMarquee from '@/components/home/ProductMarquee';
+import WelcomeSection from '@/components/home/WelcomeSection';
+import TradePartnershipSection from '@/components/home/TradePartnershipSection';
 
 const ALUMINUM_BRANDS = [
   { name: 'Reynaers Aluminium', logo: '/brands/alumimium/reynoers.png', url: 'https://www.reynaers.com/' },
@@ -52,11 +52,11 @@ function BrandGrid({ brands }) {
   );
 }
 
-export default function HomePage({ onNavigate, onOpenQuote, onSelectProduct }) {
+export default function HomePage({ onNavigate }) {
   return (
     <div className="w-full bg-[#FAFAFA]">
       {/* 1. NEW SWAP HERO SECTION (S - Steel, W - Wood, A - Aluminum, P - PVC in our architectural theme) */}
-      <SWAPHeroSection onNavigate={onNavigate} onOpenQuote={onOpenQuote} />
+      <SWAPHeroSection onNavigate={onNavigate} />
       <ProductMarquee />
       <WelcomeSection />
       <TradePartnershipSection />
