@@ -31,9 +31,9 @@ export default function Footer({ currentRoute, onNavigate, onOpenQuote }) {
           <div className="space-y-3">
             <div className="bg-white p-2.5 rounded-lg inline-block shadow-sm">
               <img
-                src="/swap-logo.png"
+                src="/logo-transparent.webp"
                 alt="SWAP Windows Corp."
-                className="h-10 w-auto object-contain"
+                className="md:w-[280px] w-[180px]"
               />
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-slate-300">Premium fenestration supply for glazing contractors, dealers, builders and architects across the USA, Canada and Europe.</p>

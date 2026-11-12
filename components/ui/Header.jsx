@@ -57,9 +57,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               aria-label="SWAP Windows Corp. Homepage"
             >
               <img
-                src="/swap-logo-transparent.png"
+                src="/logo-transparent.webp"
                 alt="SWAP Windows Corp."
-                className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                className=" md:w-[230px] w-[150px]   transition-transform group-hover:scale-[1.02]"
               />
             </button>
           </div>
@@ -120,7 +120,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[105px] bottom-0 bg-white z-40 border-t border-slate-200 overflow-y-auto px-6 py-8 flex flex-col justify-between animate-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden fixed inset-x-0 top-[120px] bottom-0 bg-white z-40 border-t border-slate-200 overflow-y-auto px-6 py-8 flex flex-col justify-between animate-in slide-in-from-top-4 duration-200">
           <div className="space-y-6">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => {

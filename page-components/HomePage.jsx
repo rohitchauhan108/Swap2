@@ -4,7 +4,6 @@ import React from 'react';
 import SWAPHeroSection from '@/components/home/SWAPHeroSection';
 import ProductMarquee from '@/components/home/ProductMarquee';
 import WelcomeSection from '@/components/home/WelcomeSection';
-import TradePartnershipSection from '@/components/home/TradePartnershipSection';
 
 const ALUMINUM_BRANDS = [
   { name: 'Reynaers Aluminium', logo: '/brands/alumimium/reynoers.png', url: 'https://www.reynaers.com/' },
@@ -59,7 +58,6 @@ export default function HomePage({ onNavigate }) {
       <SWAPHeroSection onNavigate={onNavigate} />
       <ProductMarquee />
       <WelcomeSection />
-      <TradePartnershipSection />
 
       {/* Brand partners */}
       <section className="py-14 md:py-20 bg-[#FAFAFA]">

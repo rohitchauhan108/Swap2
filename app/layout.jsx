@@ -8,6 +8,10 @@ const description =
 export const metadata = {
   title: { default: title, template: '%s | SWAP Windows Corp.' },
   description,
+  icons: {
+    icon: '/favicon.webp',
+    shortcut: '/favicon.webp',
+  },
   openGraph: { title, description, type: 'website' },
   twitter: { card: 'summary_large_image' },
 };
