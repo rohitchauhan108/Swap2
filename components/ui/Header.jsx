@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, ShieldCheck } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ShieldCheck, Phone, Mail } from 'lucide-react';
+import { COMPANY_INFO } from '@/data/companyData';
 export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,7 +37,22 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               STEEL · WOOD · ALUMINUM · PVC
             </span>
           </div>
-
+          <div className="hidden items-center gap-5 text-[11px] tracking-wide md:flex">
+            <a
+              href={`tel:${COMPANY_INFO.phoneClean}`}
+              className="flex items-center gap-1.5 text-white transition-colors hover:text-[#E6C687]"
+            >
+              <Phone className="h-3.5 w-3.5 text-[#E6C687]" aria-hidden="true" />
+              {COMPANY_INFO.phone}
+            </a>
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className="flex items-center gap-1.5 text-white transition-colors hover:text-[#E6C687]"
+            >
+              <Mail className="h-3.5 w-3.5 text-[#E6C687]" aria-hidden="true" />
+              {COMPANY_INFO.email}
+            </a>
+          </div>
         </div>
       </div>
 
@@ -148,6 +164,22 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           </div>
 
           <div className="pt-8 border-t border-slate-200 mt-8 space-y-4">
+            <div className="space-y-3">
+              <a
+                href={`tel:${COMPANY_INFO.phoneClean}`}
+                className="flex items-center gap-3 text-sm font-medium text-[#0A2540]"
+              >
+                <Phone className="h-4 w-4 text-[#C59A45]" aria-hidden="true" />
+                {COMPANY_INFO.phone}
+              </a>
+              <a
+                href={`mailto:${COMPANY_INFO.email}`}
+                className="flex items-center gap-3 text-sm font-medium text-[#0A2540]"
+              >
+                <Mail className="h-4 w-4 text-[#C59A45]" aria-hidden="true" />
+                {COMPANY_INFO.email}
+              </a>
+            </div>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
