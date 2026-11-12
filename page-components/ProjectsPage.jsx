@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import PageHero from '@/components/ui/PageHero';
 
 const imageGroups = [
   {
@@ -39,6 +40,7 @@ const imageGroups = [
     label: 'Hansen Slim AS Steel',
     tabs: ['hansen', 'steel', 'doors', 'windows'],
     files: ['1.jpg', '2.jpg', '3.jpeg'],
+    locations: ['206 Ditmas Brooklyn NY', '120 Grove Monsey NY', '77 Gerry Brooklyn NY'],
   },
   {
     folder: 'wall-to-wall',
@@ -89,6 +91,7 @@ const gallery = imageGroups.flatMap((group) =>
     src: `/projects/${group.folder}/${file}`,
     title: `${group.label} ${String(index + 1).padStart(2, '0')}`,
     label: group.label,
+    location: group.locations?.[index],
     tabs: group.tabs,
   }))
 );
@@ -115,25 +118,13 @@ export default function ProjectsPage() {
 
   return (
     <main className="bg-white">
+      <PageHero
+        eyebrow="Selected installations"
+        title="Our Latest Projects"
+        description="Explore our window, door, curtain wall, and architectural glazing references."
+      />
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-5 pb-10 pt-14 sm:px-10 sm:pb-12 sm:pt-16 lg:px-14">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.3em] text-[#c59a45]">
-              Selected installations
-            </p>
-            <h1 className="font-heading text-3xl font-bold tracking-tight text-[#0a2540] sm:text-4xl md:text-5xl">
-              Our Latest Projects
-            </h1>
-            <div className="mx-auto mt-5 flex items-center justify-center gap-2">
-              <span className="h-px w-20 bg-slate-300" />
-              <span className="h-1 w-20 bg-[#e00000]" />
-              <span className="h-px w-20 bg-slate-300" />
-            </div>
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-slate-600">
-              Explore our window, door, curtain wall, and architectural glazing references. Filter the gallery by system or application to find the right inspiration for your next project.
-            </p>
-          </div>
-
           <div className="tabs-scroll mx-auto mt-10 flex max-w-6xl gap-2 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -162,13 +153,7 @@ export default function ProjectsPage() {
       </section>
 
       <section className="mx-auto max-w-[1500px] px-5 py-10 sm:px-10 md:py-14 lg:px-14">
-        <div className="mb-7 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#c59a45]">
-              {tabs.find((tab) => tab.id === activeTab)?.label}
-            </p>
-            <p className="mt-2 text-sm text-slate-500">{visibleProjects.length} project references</p>
-          </div>
+        <div className="mb-7 flex justify-end">
           <span className="hidden text-xs uppercase tracking-widest text-slate-400 sm:block">
             Click any image to enlarge
           </span>
@@ -180,24 +165,19 @@ export default function ProjectsPage() {
               key={project.id}
               type="button"
               onClick={() => setSelectedIndex(index)}
-              className="group relative aspect-[1.14] overflow-hidden bg-slate-100 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c59a45] focus-visible:ring-offset-2"
+              className="group overflow-hidden bg-slate-100 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c59a45] focus-visible:ring-offset-2"
             >
               <img
                 src={project.src}
                 alt={project.title}
                 loading={index < 8 ? 'eager' : 'lazy'}
-                className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105"
+                className="aspect-[1.14] h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-105"
               />
-              <span className="absolute inset-0 bg-gradient-to-t from-[#00142e]/85 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="absolute bottom-0 left-0 right-0 translate-y-3 p-4 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-[#e6c687]">{project.label}</span>
-                <span className="mt-1 flex items-center justify-between gap-2 text-xs font-medium">
-                  View project <Maximize2 className="h-3.5 w-3.5" />
+              {project.location && (
+                <span className="block bg-[#d40000] px-2 py-2 text-center text-xs font-bold text-white">
+                  {project.location}
                 </span>
-              </span>
-              <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center bg-white/90 text-[#0a2540] opacity-0 transition-opacity group-hover:opacity-100">
-                <Maximize2 className="h-4 w-4" />
-              </span>
+              )}
             </button>
           ))}
         </div>
@@ -225,13 +205,6 @@ export default function ProjectsPage() {
           />
           <div className="relative z-10 flex max-h-[92vh] w-full max-w-6xl items-center justify-center overflow-hidden bg-[#071b32] shadow-2xl">
             <img src={selectedProject.src} alt={selectedProject.title} className="max-h-[92vh] w-full object-contain" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-[#00142e]/90 to-transparent px-5 pb-5 pt-16 sm:px-7">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#e6c687]">{selectedProject.label}</p>
-                <p className="mt-1 text-sm font-medium text-white">{selectedProject.title}</p>
-              </div>
-              <span className="text-xs text-slate-300">{selectedIndex + 1} / {displayedProjects.length}</span>
-            </div>
             <button type="button" onClick={showPrevious} className="absolute left-4 flex h-10 w-10 items-center justify-center rounded-full border border-[#e6c687]/40 bg-[#00142e]/80 text-[#e6c687] transition hover:bg-[#c59a45] hover:text-white" aria-label="Previous image">
                 <ChevronLeft className="h-5 w-5" />
             </button>

@@ -51,11 +51,11 @@ function BrandGrid({ brands }) {
   );
 }
 
-export default function HomePage({ onNavigate }) {
+export default function HomePage() {
   return (
     <div className="w-full bg-[#FAFAFA]">
       {/* 1. NEW SWAP HERO SECTION (S - Steel, W - Wood, A - Aluminum, P - PVC in our architectural theme) */}
-      <SWAPHeroSection onNavigate={onNavigate} />
+      <SWAPHeroSection />
       <ProductMarquee />
       <WelcomeSection />
 

@@ -12,6 +12,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import { COMPANY_INFO } from '@/data/companyData';
+import PageHero from '@/components/ui/PageHero';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -74,22 +75,10 @@ export default function ContactPage() {
 
   return (
     <div className="w-full bg-[#FAFAFA]">
-      {/* Editorial Header with Blueprint Grid */}
-      <section className="pt-16 pb-16 md:pt-20 md:pb-24 bg-white border-b border-slate-200 bg-architectural-grid">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
-              Trade Communications & Estimating
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
-              Contact Us & Submit Takeoffs.
-            </h1>
-            <p className="text-base sm:text-lg text-slate-600 font-light leading-relaxed">
-              Connect directly with our estimating and engineering department. Send your schedules for project-specific pricing across the USA, Canada, and Europe.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Trade Communications & Estimating"
+        title="Contact Us & Submit Takeoffs."
+      />
 
       {/* Main Contact & Form Section */}
       <section className="py-16 md:py-24">
@@ -156,19 +145,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Reynaers Special Promo with SWAP Logo Blue Gradient */}
-              <div className="bg-gradient-to-br from-[#00142E] via-[#00224A] to-[#0D3B73] text-white p-6 rounded-2xl border border-[#17487F]/70 space-y-2 relative overflow-hidden shadow-md">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-[#185396]/20 rounded-full blur-2xl pointer-events-none" />
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#E6C687] relative z-10">
-                  Special Pricing Opportunity
-                </span>
-                <h4 className="text-lg font-heading font-bold text-white relative z-10">
-                  Reynaers SL38 Slim-Profile
-                </h4>
-                <p className="text-sm text-slate-300 leading-relaxed relative z-10">
-                  Ask about our special trade discount pricing on Reynaers SL38 systems. Send us your plans today for project-specific pricing.
-                </p>
-              </div>
             </div>
 
             {/* Right: Takeoff & Quote Inquiry Form */}
