@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, Layers, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUpRight, Layers } from 'lucide-react';
 import SWAPHeroSection from '@/components/home/SWAPHeroSection';
 import ProductMarquee from '@/components/home/ProductMarquee';
 import WelcomeSection from '@/components/home/WelcomeSection';
@@ -62,68 +62,11 @@ const GLASS_BRANDS = [
 
 export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState('ALL');
-  const cardRefs = useRef([]);
-  const overlayRefs = useRef([]);
 
   const visibleCategories =
     activeFilter === 'ALL'
       ? SWAP_CATEGORIES
       : SWAP_CATEGORIES.filter((cat) => cat.letter === activeFilter);
-
-  useEffect(() => {
-    let rafId;
-
-    const updateCardTransforms = () => {
-      const isDesktop = window.innerWidth >= 1024;
-
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
-        const overlay = overlayRefs.current[index];
-
-        if (!isDesktop || index === visibleCategories.length - 1) {
-          card.style.transform = 'scale(1) translate3d(0, 0, 0)';
-          if (overlay) overlay.style.opacity = '0';
-          return;
-        }
-
-        const nextCard = cardRefs.current[index + 1];
-        if (!nextCard) return;
-
-        const cardRect = card.getBoundingClientRect();
-        const nextRect = nextCard.getBoundingClientRect();
-
-        const distance = nextRect.top - cardRect.top;
-        const maxRange = cardRect.height;
-
-        const rawProgress = 1 - Math.max(0, Math.min(distance / maxRange, 1));
-        const easedProgress = 1 - Math.pow(1 - rawProgress, 2);
-
-        const targetScale = 1 - easedProgress * 0.045;
-        const targetTranslateY = -easedProgress * 10;
-
-        card.style.transform = `translate3d(0, ${targetTranslateY}px, 0) scale(${targetScale})`;
-
-        if (overlay) {
-          overlay.style.opacity = `${easedProgress * 0.14}`;
-        }
-      });
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateCardTransforms);
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    updateCardTransforms();
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [visibleCategories.length, activeFilter]);
 
   return (
     <div className="w-full bg-[#FAFAFA]">
@@ -131,8 +74,8 @@ export default function HomePage() {
       <ProductMarquee />
       <WelcomeSection />
 
-      {/* Architectural SWAP Brands Section */}
-      <section className="relative py-20 md:py-28 bg-[#FAFAFA] overflow-clip">
+      {/* Architectural SWAP Brands Section - White Background */}
+      <section className="relative py-20 md:py-28 bg-white overflow-clip">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.035]"
           style={{
@@ -157,45 +100,26 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="space-y-8 lg:space-y-12 mb-28 lg:pb-[calc(100vh-12rem)]">
-            {visibleCategories.map((category, index) => (
+          <div className="space-y-8 mb-20">
+            {visibleCategories.map((category) => (
               <div
                 key={category.letter}
-                ref={(el) => {
-                  cardRefs.current[index] = el;
-                }}
-                className="group/row rounded-3xl bg-gray-200 border border-slate-200/90 p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_-15px_rgba(10,37,64,0.08)] hover:border-[#C59A45]/50 sticky origin-top will-change-transform transform-gpu transition-[border-color,box-shadow] duration-300"
-                style={{
-                  top: `calc(6.5rem + ${index * 1.5}rem)`,
-                  zIndex: index + 10,
-                }}
+                className="group/row rounded-3xl bg-[#0A2540] border border-slate-200/90 p-6 sm:p-8 lg:p-10 transition-[border-color,box-shadow] duration-300 hover:border-[#C59A45]/50 shadow-xl text-white"
               >
-                <div
-                  ref={(el) => {
-                    overlayRefs.current[index] = el;
-                  }}
-                  className="pointer-events-none absolute inset-0 rounded-3xl bg-[#0A2540] opacity-0 transition-opacity duration-75 z-20"
-                />
-
-                <span className="absolute top-3 left-3 h-2 w-2 border-t-2 border-l-2 border-[#C59A45]/40" />
-                <span className="absolute top-3 right-3 h-2 w-2 border-t-2 border-r-2 border-[#C59A45]/40" />
-                <span className="absolute bottom-3 left-3 h-2 w-2 border-b-2 border-l-2 border-[#C59A45]/40" />
-                <span className="absolute bottom-3 right-3 h-2 w-2 border-b-2 border-r-2 border-[#C59A45]/40" />
-
                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  <div className="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200/80 pb-6 lg:pb-0 lg:pr-8">
+                  <div className="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0 lg:pr-8">
                     <div className="flex items-baseline gap-4">
-                      <span className="font-heading text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#0A2540] via-[#0A2540] to-[#C59A45] leading-none select-none">
+                      <span className="font-heading text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-[linear-gradient(135deg,#ffffff_20%,#ba842d_100%)] leading-none select-none">
                         {category.letter}
                       </span>
                       <div>
-                        <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#0A2540]">
+                        <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white">
                           {category.title}
                         </h3>
                       </div>
                     </div>
 
-                    <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-[#0A2540]/70">
+                    <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-slate-300">
                       <Layers className="w-3.5 h-3.5 text-[#C59A45]" />
                       <span>
                         {category.brands.length}{' '}
@@ -221,22 +145,22 @@ export default function HomePage() {
                           target="_blank"
                           rel="noreferrer"
                           title={`Visit ${brand.name}`}
-                          className="group/card relative flex flex-col justify-between rounded-2xl border border-slate-300 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
+                          className="group/card relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
                         >
-                          <div className="flex h-14 w-full items-center justify-center my-1">
+                          <div className="flex h-14 w-full items-center justify-center my-1 bg-white rounded-xl p-2.5">
                             <img
                               src={brand.logo}
                               alt={`${brand.name} logo`}
-                              className="max-h-11 max-w-[150px] object-contain grayscale-[35%] transition-all duration-300 group-hover/card:grayscale-0 group-hover/card:scale-105"
+                              className="max-h-10 max-w-[150px] object-contain transition-transform duration-300 group-hover/card:scale-105"
                               loading="lazy"
                             />
                           </div>
 
-                          <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between">
-                            <span className="text-xs font-bold text-[#0A2540] group-hover/card:text-[#C59A45] transition-colors">
+                          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                            <span className="text-xs font-bold text-white transition-colors">
                               {brand.name}
                             </span>
-                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 transition-all duration-200 group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45] group-hover/card:text-white">
+                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45] group-hover/card:text-white transition-all duration-200">
                               <ArrowUpRight className="w-3.5 h-3.5" />
                             </span>
                           </div>
@@ -249,23 +173,16 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="relative z-0 rounded-3xl bg-[#0A2540] p-8 sm:p-12 overflow-hidden shadow-xl">
+          <div className="relative z-0 rounded-3xl bg-[#0A2540] p-8 sm:p-12 overflow-hidden shadow-xl text-white">
             <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#C59A45]/15 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
 
             <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/10">
               <div>
-                <div className="inline-flex items-center gap-2 text-[#C59A45] text-xs font-bold uppercase tracking-[0.25em] mb-2">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Glazing & Facade Partners</span>
-                </div>
                 <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white">
                   Architectural Glass Systems
                 </h3>
               </div>
-              <p className="text-slate-300 text-xs sm:text-sm max-w-md">
-                High-performance solar control, acoustic, and structural glazing engineered to pair seamlessly with every S·W·A·P profile.
-              </p>
             </div>
 
             <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
