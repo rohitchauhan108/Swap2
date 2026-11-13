@@ -22,7 +22,19 @@ const imageGroups = [
       "10.jpg",
       "11.jpeg",
     ],
-    names: ['834 Pacific Brooklyn NY','5 Garfield Brooklyn NY','42 Church Monsey Airmont NY','COX CRO Lakewood School NJ','Chester Coomunity Chester NY','554 Prospect ST.Brooklyn NY','210 North 10th Brooklyn NY','184 Nostrand AVE Brooklyn NY','6015-Riverdale Bronx NY','BR School 5 Kahan DR Monroe NY']
+    names: {
+      "1.jpg": "834 Pacific Brooklyn NY",
+      "2.jpg": "5 Garfield Brooklyn NY",
+      "3.jpg": "42 Church Monsey Airmont NY",
+      "4.jpg": "COX CRO Lakewood School NJ",
+      "5.jpg": "",
+      "6.jpg": "Chester Coomunity Chester NY",
+      "7.jpg": "554 Prospect ST.Brooklyn NY",
+      "8.jpg": "210 North 10th Brooklyn NY",
+      "9.jpg": "184 Nostrand AVE Brooklyn NY",
+      "10.jpg": "6015-Riverdale Bronx NY",
+      "11.jpeg": "BR School 5 Kahan DR Monroe NY",
+    },
   },
   {
     folder: "windows",
@@ -42,7 +54,20 @@ const imageGroups = [
       "11.jpeg",
       "12.jpeg",
     ],
-    names: ['']
+     names: {
+      "1.jpg": "834 Pacific Brooklyn NY",
+      "2.jpg": "5 Garfield Brooklyn NY",
+      "3.jpg": "42 Church Monsey Airmont NY",
+      "4.jpg": "COX CRO Lakewood School NJ",
+      "5.jpg": "834 Pacific",
+      "6.jpg": "Chester Coomunity Chester NY",
+      "7.jpg": "554 Prospect ST.Brooklyn NY",
+      "8.jpg": "210 North 10th Brooklyn NY",
+      "9.jpg": "184 Nostrand AVE Brooklyn NY",
+      "10.jpg": "6015-Riverdale Bronx NY",
+      "11.jpeg": "BR School 5 Kahan DR Monroe NY",
+      "12.jpeg": "77 Gerry Brooklyn NY",
+    },
   },
   {
     folder: "doors",
@@ -58,53 +83,99 @@ const imageGroups = [
       "7.jpeg",
       "8.jpg",
     ],
+    names: {
+      "1.jpg": "5 Garfield Brooklyn NY",
+      "2.jpg": "42 Church Monsey Airmont NY",
+      "3.jpg": "206 Ditmas Brooklyn NY",
+      "4.jpg": "Chester Coomunity Chester NY",
+      "5.jpg": "184 Nostrand AVE Brooklyn NY",
+      "6.jpg": "120 Grove Monsey NY",
+      "7.jpeg": "77 Gerry Brooklyn NY",
+      "8.jpg": "BR School Monroe NY",
+    },
   },
   {
     folder: "aluprof",
     label: "Aluprof collection",
     tabs: ["aluprof"],
-    files: ["1.jpeg", "1.jpg", "2.jpeg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+    files: ["1.jpeg", "2.jpeg",],
+    names: {
+      "1.jpeg": "BR School 5 Kahan DR Monroe NY",
+      "2.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
+    },
   },
   {
     folder: "reynaers",
     label: "Reynaers collection",
     tabs: ["reynaers"],
     files: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+     names: {
+      "1.jpg": "834 Pacific Brooklyn NY",
+      "2.jpg": "834 Pacific",
+      "3.jpg": "554 Prospect ST.Brooklyn NY",
+      "4.jpg": "184 Nostrand AVE Brooklyn NY",
+      "5.jpg": "6015-Riverdale Bronx NY",
+    },
   },
   {
     folder: "curtain-walls",
     label: "Curtain wall collection",
     tabs: ["curtain-walls"],
     files: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpeg"],
+    names: {
+      "1.jpg": "COX CRO Lakewood School NJ",
+      "2.jpg": "554 Prospect ST.Brooklyn NY",
+      "3.jpg": "210 North 10th Brooklyn NY",
+      "4.jpg": "184 Nostrand AVE Brooklyn NY",
+      "5.jpeg": "BR School 5 Kahan DR Monroe NY",
+    },
   },
   {
     folder: "hansen-slim-as-steel",
     label: "Hansen Slim AS Steel",
     tabs: ["hansen"],
     files: ["1.jpg", "2.jpg", "3.jpeg"],
-    locations: [
-      "206 Ditmas Brooklyn NY",
-      "120 Grove Monsey NY",
-      "77 Gerry Brooklyn NY",
-    ],
+    // locations: [
+    //   "206 Ditmas Brooklyn NY",
+    //   "120 Grove Monsey NY",
+    //   "77 Gerry Brooklyn NY",
+    // ],
+    names: {
+      "1.jpg": "206 Ditmas Brooklyn NY",
+      "2.jpg": "120 Grove Monsey NY",
+      "3.jpeg": "77 Gerry Brooklyn NY",
+    },
   },
   {
     folder: "wall-to-wall",
     label: "Wall to wall collection",
     tabs: ["wall-to-wall"],
     files: ["1.jpg", "2.jpg", "3.jpeg"],
+    names: {
+      "1.jpg": "206 Ditmas Brooklyn NY",
+      "2.jpg": "120 Grove Monsey NY",
+      "3.jpeg": "77 Gerry Brooklyn NY",
+    },
   },
   {
     folder: "aliplast",
     label: "Aliplast collection",
     tabs: ["aliplast"],
     files: ["1.jpg", "2.jpg"],
+    names: {
+      "1.jpg": "5 Garfield Brooklyn NY",
+      "2.jpg": "COX CRO Lakewood School NJ",
+    },
   },
   {
     folder: "asas",
     label: "ASAS collection",
     tabs: ["asas"],
     files: ["1.jpg", "2.jpeg"],
+    names: {
+      "1.jpg": "5 Garfield Brooklyn NY",
+      "2.jpeg": "BR School 5 Kahan DR Monroe NY",
+    },
   },
   {
     folder: "pvc",
@@ -156,6 +227,7 @@ export default function ProjectsPage({ imageFiles = {} }) {
           id: `${group.folder}-${file}`,
           src: `/projects/${group.folder}/${file}`,
           title: `${group.label} ${String(index + 1).padStart(2, "0")}`,
+          name: group.names?.[file],
           label: group.label,
           location: group.locations?.[index],
           tabs: group.tabs,
@@ -234,19 +306,24 @@ export default function ProjectsPage({ imageFiles = {} }) {
               key={project.id}
               type="button"
               onClick={() => setSelectedIndex(index)}
-              className="group overflow-hidden bg-slate-100 text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c59a45] focus-visible:ring-offset-2"
+              className="group overflow-hidden bg-[#bd0002] text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c59a45] focus-visible:ring-offset-2"
             >
               <img
                 src={project.src}
-                alt={project.title}
+                alt={project.name || project.title}
                 loading={index < 8 ? "eager" : "lazy"}
                 className="aspect-[1.14] h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-105"
               />
-              {project.location && (
+              {project.name && (
+                <span className="block w-full px-3 py-3 text-center text-xs font-bold tracking-wide text-white sm:text-base">
+                  {project.name}
+                </span>
+              )}
+              {/* {project.location && (
                 <span className="block bg-[#d40000] px-2 py-2 text-center text-xs font-bold text-white">
                   {project.location}
                 </span>
-              )}
+              )} */}
             </button>
           ))}
         </div>
