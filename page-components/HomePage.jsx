@@ -164,7 +164,7 @@ export default function HomePage() {
                 ref={(el) => {
                   cardRefs.current[index] = el;
                 }}
-                className="group/row rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_-15px_rgba(10,37,64,0.08)] hover:border-[#C59A45]/50 sticky origin-top will-change-transform transform-gpu transition-[border-color,box-shadow] duration-300"
+                className="group/row rounded-3xl bg-gray-200 border border-slate-200/90 p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_-15px_rgba(10,37,64,0.08)] hover:border-[#C59A45]/50 sticky origin-top will-change-transform transform-gpu transition-[border-color,box-shadow] duration-300"
                 style={{
                   top: `calc(6.5rem + ${index * 1.5}rem)`,
                   zIndex: index + 10,
@@ -221,7 +221,7 @@ export default function HomePage() {
                           target="_blank"
                           rel="noreferrer"
                           title={`Visit ${brand.name}`}
-                          className="group/card relative flex flex-col justify-between rounded-2xl border border-slate-300 bg-transparent p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
+                          className="group/card relative flex flex-col justify-between rounded-2xl border border-slate-300 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
                         >
                           <div className="flex h-14 w-full items-center justify-center my-1">
                             <img
