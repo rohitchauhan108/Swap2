@@ -32,9 +32,9 @@ export function ProductsView() {
   );
 }
 
-export function ProjectsView() {
+export function ProjectsView({ imageFiles }) {
   const { navigateTo, openQuote } = useSite();
-  return <ProjectsPage onNavigate={navigateTo} onOpenQuote={openQuote} />;
+  return <ProjectsPage imageFiles={imageFiles} onNavigate={navigateTo} onOpenQuote={openQuote} />;
 }
 
 export function ContactView() {
