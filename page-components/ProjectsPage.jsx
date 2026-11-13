@@ -9,7 +9,7 @@ const imageGroups = [
     folder: 'aluminimum',
     label: 'Aluminum collection',
     tabs: ['aluminum', 'aluprof', 'reynaers', 'aliplast'],
-    files: ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg'],
+    files: ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg'],
   },
   {
     folder: 'windows',
