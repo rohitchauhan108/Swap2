@@ -182,6 +182,9 @@ const imageGroups = [
     label: "PVC collection",
     tabs: ["pvc"],
     files: ["1.jpg"],
+    names: {
+      "1.jpg": "West 139 Street NYC",
+    },
   },
   {
     folder: "steel",
@@ -227,7 +230,7 @@ export default function ProjectsPage({ imageFiles = {} }) {
           id: `${group.folder}-${file}`,
           src: `/projects/${group.folder}/${file}`,
           title: `${group.label} ${String(index + 1).padStart(2, "0")}`,
-          name: group.names?.[file],
+          name: group.names?.[file]?.trim(),
           label: group.label,
           location: group.locations?.[index],
           tabs: group.tabs,
@@ -235,10 +238,22 @@ export default function ProjectsPage({ imageFiles = {} }) {
     );
   }, [imageFiles]);
   const visibleProjects = useMemo(
-    () =>
-      activeTab === "all"
-        ? gallery
-        : gallery.filter((project) => project.tabs.includes(activeTab)),
+    () => {
+      if (activeTab !== "all") {
+        return gallery.filter((project) => project.tabs.includes(activeTab));
+      }
+
+      const seenNames = new Set();
+      return gallery.filter((project) => {
+        if (!project.name) return true;
+
+        const normalizedName = project.name.toLocaleLowerCase();
+        if (seenNames.has(normalizedName)) return false;
+
+        seenNames.add(normalizedName);
+        return true;
+      });
+    },
     [activeTab],
   );
   const displayedProjects = visibleProjects.slice(0, visibleCount);
@@ -281,8 +296,8 @@ export default function ProjectsPage({ imageFiles = {} }) {
                   aria-pressed={isActive}
                   className={`shrink-0 border px-4 py-2.5 text-[10px] font-bold tracking-wide transition-all duration-200 md:px-5 md:py-3 md:text-xs ${
                     isActive
-                      ? "border-[#c59a45] bg-[#c59a45] text-white shadow-md shadow-[#c59a45]/20"
-                      : "border-slate-200 bg-[#f8fafc] text-slate-700 hover:border-[#0a2540] hover:text-[#0a2540]"
+                      ? "border-[#c59a45] bg-[#bd0002] text-white shadow-md shadow-[#c59a45]/20"
+                      : "border-slate-200 bg-gray-200 text-black hover:border-[#0a2540] hover:text-[#0a2540]"
                   }`}
                 >
                   {tab.label}
@@ -306,16 +321,16 @@ export default function ProjectsPage({ imageFiles = {} }) {
               key={project.id}
               type="button"
               onClick={() => setSelectedIndex(index)}
-              className="group overflow-hidden bg-[#bd0002] text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c59a45] focus-visible:ring-offset-2"
+              className="group overflow-hidden bg-white text-left shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c59a45] focus-visible:ring-offset-2"
             >
               <img
                 src={project.src}
                 alt={project.name || project.title}
                 loading={index < 8 ? "eager" : "lazy"}
-                className="aspect-[1.14] h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-105"
+                className="mb-2 aspect-[1.14] h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-105"
               />
               {project.name && (
-                <span className="block w-full px-3 py-3 text-center text-xs font-bold tracking-wide text-white sm:text-base">
+                <span className="block w-full bg-[#bd0002] px-3 py-3 text-center text-xs font-bold tracking-wide text-white sm:text-base">
                   {project.name}
                 </span>
               )}
