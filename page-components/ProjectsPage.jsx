@@ -217,8 +217,10 @@ const tabs = [
   { id: "hansen", label: "HANSEN - SLIM AS STEEL" },
 ];
 
-export default function ProjectsPage({ imageFiles = {} }) {
-  const [activeTab, setActiveTab] = useState("all");
+export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
+  const [activeTab, setActiveTab] = useState(() =>
+    tabs.some((tab) => tab.id === initialCategory) ? initialCategory : "all",
+  );
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [visibleCount, setVisibleCount] = useState(16);
 

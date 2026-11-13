@@ -32,9 +32,16 @@ export function ProductsView() {
   );
 }
 
-export function ProjectsView({ imageFiles }) {
+export function ProjectsView({ imageFiles, initialCategory }) {
   const { navigateTo, openQuote } = useSite();
-  return <ProjectsPage imageFiles={imageFiles} onNavigate={navigateTo} onOpenQuote={openQuote} />;
+  return (
+    <ProjectsPage
+      imageFiles={imageFiles}
+      initialCategory={initialCategory}
+      onNavigate={navigateTo}
+      onOpenQuote={openQuote}
+    />
+  );
 }
 
 export function ContactView() {

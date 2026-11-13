@@ -106,8 +106,8 @@ export default function HomePage() {
                 key={category.letter}
                 className="group/row rounded-3xl bg-[#0A2540] border border-slate-200/90 p-6 sm:p-8 lg:p-10 transition-[border-color,box-shadow] duration-300 hover:border-[#C59A45]/50 shadow-xl text-white"
               >
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  <div className="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/50 pb-6 lg:pb-0 lg:pr-8">
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                  <div className="lg:col-span-4 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/50 pb-6 lg:pb-0 lg:pr-8">
                     <div className="flex items-baseline gap-4">
                       <span className="font-heading text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-[#ebb760] leading-none select-none">
                         {category.letter}

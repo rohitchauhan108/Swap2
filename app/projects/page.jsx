@@ -43,7 +43,8 @@ async function getProjectImageFiles() {
   return Object.fromEntries(projectImages);
 }
 
-export default async function Page() {
+export default async function Page({ searchParams }) {
   const imageFiles = await getProjectImageFiles();
-  return <ProjectsView imageFiles={imageFiles} />;
+  const { category } = await searchParams;
+  return <ProjectsView imageFiles={imageFiles} initialCategory={category} />;
 }
