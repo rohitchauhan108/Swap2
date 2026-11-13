@@ -43,7 +43,7 @@
     font-family: var(--font-sans);
     color: #1e293b;
     background-color: #fafafa;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .custom-cursor-ring,
