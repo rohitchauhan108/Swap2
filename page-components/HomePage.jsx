@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ArrowUpRight, Layers } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import SWAPHeroSection from '@/components/home/SWAPHeroSection';
 import ProductMarquee from '@/components/home/ProductMarquee';
 import WelcomeSection from '@/components/home/WelcomeSection';
@@ -60,14 +60,62 @@ const GLASS_BRANDS = [
   { name: 'AGC', logo: '/brands/glass/agc.png', url: 'https://www.agc.com/' },
 ];
 
+const ALL_BRANDS = [...SWAP_CATEGORIES.flatMap((category) => category.brands), ...GLASS_BRANDS];
+
+function BrandLogoCard({ brand, isDuplicate }) {
+  return (
+    <a
+      href={brand.url}
+      target="_blank"
+      rel="noreferrer"
+      title={`Visit ${brand.name}`}
+      tabIndex={isDuplicate ? -1 : undefined}
+      className="group/card relative flex h-48 w-[calc((100vw-2.5rem)/2)] shrink-0 flex-col justify-between rounded-2xl border border-white/20 bg-white/[0.04] p-3 text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md sm:w-[calc((100vw-5rem)/3)] sm:p-4 md:w-[calc((100vw-6rem)/4)] lg:w-[calc((100vw-7rem)/6)] lg:p-5"
+      aria-hidden={isDuplicate || undefined}
+    >
+      <div className="my-1 flex h-20 w-full items-center justify-center overflow-hidden rounded-xl bg-white p-2">
+        <img
+          src={brand.logo}
+          alt={`${brand.name} logo`}
+          className="h-full w-full object-contain transition-transform duration-300 group-hover/card:scale-105"
+          loading="lazy"
+        />
+      </div>
+      <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3">
+        <span className="text-xs font-bold text-white">{brand.name}</span>
+        <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-200 group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45]">
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </span>
+      </div>
+    </a>
+  );
+}
+
+function BrandLogoMarquee({ brands }) {
+  return (
+    <div className="overflow-hidden">
+      <div className="product-marquee-track flex w-max items-center">
+        {[false, true].map((isDuplicate) => (
+          <div
+            key={isDuplicate ? 'duplicate' : 'original'}
+            className="flex shrink-0 items-center gap-3 pr-3 sm:gap-4 sm:pr-4"
+            aria-hidden={isDuplicate || undefined}
+          >
+            {brands.map((brand) => (
+              <BrandLogoCard
+                key={brand.name}
+                brand={brand}
+                isDuplicate={isDuplicate}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
-  const [activeFilter, setActiveFilter] = useState('ALL');
-
-  const visibleCategories =
-    activeFilter === 'ALL'
-      ? SWAP_CATEGORIES
-      : SWAP_CATEGORIES.filter((cat) => cat.letter === activeFilter);
-
   return (
     <div className="w-full bg-[#FAFAFA]">
       <SWAPHeroSection />
@@ -85,8 +133,8 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="flex flex-col items-center justify-center gap-6 mb-16 pb-8 border-b border-slate-200">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
+          <div className="mb-10 flex flex-col items-center justify-center gap-3 text-center sm:mb-14">
             <div className="max-w-2xl space-y-3 flex flex-col items-center text-center">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A2540]/5 border border-[#0A2540]/10">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#C59A45]" />
@@ -100,112 +148,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="space-y-8 mb-20">
-            {visibleCategories.map((category) => (
-              <div
-                key={category.letter}
-                className="group/row rounded-3xl bg-[#0A2540] border border-slate-200/90 p-6 sm:p-8 lg:p-10 transition-[border-color,box-shadow] duration-300 hover:border-[#C59A45]/50 shadow-xl text-white"
-              >
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                  <div className="lg:col-span-4 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/50 pb-6 lg:pb-0 lg:pr-8">
-                    <div className="flex items-baseline gap-4">
-                      <span className="font-heading text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-[#ebb760] leading-none select-none">
-                        {category.letter}
-                      </span>
-                      <div>
-                        <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white">
-                          {category.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-8">
-                    <div
-                      className={`grid gap-4 ${
-                        category.brands.length === 1
-                          ? 'grid-cols-1 sm:grid-cols-2'
-                          : category.brands.length <= 3
-                          ? 'grid-cols-1 sm:grid-cols-3'
-                          : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'
-                      }`}
-                    >
-                      {category.brands.map((brand) => (
-                        <a
-                          key={brand.name}
-                          href={brand.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          title={`Visit ${brand.name}`}
-                          className="group/card relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
-                        >
-                          <div className="flex h-14 w-full items-center justify-center my-1 bg-white rounded-xl p-2.5">
-                            <img
-                              src={brand.logo}
-                              alt={`${brand.name} logo`}
-                              className="max-h-10 max-w-[150px] object-contain transition-transform duration-300 group-hover/card:scale-105"
-                              loading="lazy"
-                            />
-                          </div>
-
-                          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                            <span className="text-xs font-bold text-white transition-colors">
-                              {brand.name}
-                            </span>
-                            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45] group-hover/card:text-white transition-all duration-200">
-                              <ArrowUpRight className="w-3.5 h-3.5" />
-                            </span>
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="relative z-0 rounded-3xl bg-[#0A2540] p-8 sm:p-12 overflow-hidden shadow-xl text-white">
+          <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-[#0A2540] py-8 shadow-xl sm:py-10">
             <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#C59A45]/15 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
-
-            <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/10">
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white">
-                  Architectural Glass Systems
-                </h3>
-              </div>
-            </div>
-
-            <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {GLASS_BRANDS.map((brand) => (
-                <a
-                  key={brand.name}
-                  href={brand.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  title={`Visit ${brand.name}`}
-                  className="group/card flex flex-col items-center justify-between rounded-2xl bg-white/[0.04] backdrop-blur-xs border border-white/10 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
-                >
-                  <div className="flex h-14 w-full items-center justify-center rounded-xl bg-white/95 p-2.5 shadow-xs">
-                    <img
-                      src={brand.logo}
-                      alt={`${brand.name} logo`}
-                      className="max-h-10 w-full object-contain transition-transform duration-300 group-hover/card:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="mt-4 flex items-center justify-between w-full">
-                    <span className="text-xs font-bold text-white">
-                      {brand.name}
-                    </span>
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white transition-all duration-200 group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45] group-hover/card:text-white">
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <BrandLogoMarquee brands={ALL_BRANDS} />
           </div>
         </div>
       </section>
