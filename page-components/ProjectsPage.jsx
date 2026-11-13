@@ -8,33 +8,80 @@ const imageGroups = [
   {
     folder: "aluminimum",
     label: "Aluminum collection",
-    tabs: ["aluminum", "aluprof", "reynaers", "aliplast"],
-    aluminumImageCount: 11,
+    tabs: ["aluminum"],
+    files: [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg",
+      "7.jpg",
+      "8.jpg",
+      "9.jpg",
+      "10.jpg",
+      "11.jpeg",
+    ],
+    names: ['834 Pacific Brooklyn NY','5 Garfield Brooklyn NY','42 Church Monsey Airmont NY','COX CRO Lakewood School NJ','Chester Coomunity Chester NY','554 Prospect ST.Brooklyn NY','210 North 10th Brooklyn NY','184 Nostrand AVE Brooklyn NY','6015-Riverdale Bronx NY','BR School 5 Kahan DR Monroe NY']
   },
   {
     folder: "windows",
     label: "Window collection",
-    tabs: ["windows", "reynaers"],
+    tabs: ["windows"],
+    files: [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg",
+      "7.jpg",
+      "8.jpg",
+      "9.jpg",
+      "10.jpg",
+      "11.jpeg",
+      "12.jpeg",
+    ],
+    names: ['']
   },
   {
     folder: "doors",
     label: "Door collection",
     tabs: ["doors"],
+    files: [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg",
+      "7.jpeg",
+      "8.jpg",
+    ],
   },
   {
     folder: "aluprof",
     label: "Aluprof collection",
-    tabs: ["aluprof", "windows", "doors"],
+    tabs: ["aluprof"],
+    files: ["1.jpeg", "1.jpg", "2.jpeg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+  },
+  {
+    folder: "reynaers",
+    label: "Reynaers collection",
+    tabs: ["reynaers"],
+    files: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
   },
   {
     folder: "curtain-walls",
     label: "Curtain wall collection",
     tabs: ["curtain-walls"],
+    files: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpeg"],
   },
   {
     folder: "hansen-slim-as-steel",
     label: "Hansen Slim AS Steel",
-    tabs: ["hansen", "doors", "windows"],
+    tabs: ["hansen"],
+    files: ["1.jpg", "2.jpg", "3.jpeg"],
     locations: [
       "206 Ditmas Brooklyn NY",
       "120 Grove Monsey NY",
@@ -44,22 +91,38 @@ const imageGroups = [
   {
     folder: "wall-to-wall",
     label: "Wall to wall collection",
-    tabs: ["wall-to-wall", "windows"],
+    tabs: ["wall-to-wall"],
+    files: ["1.jpg", "2.jpg", "3.jpeg"],
   },
   {
     folder: "aliplast",
     label: "Aliplast collection",
-    tabs: ["aliplast", "windows"],
+    tabs: ["aliplast"],
+    files: ["1.jpg", "2.jpg"],
   },
   {
     folder: "asas",
     label: "ASAS collection",
-    tabs: ["asas", "windows"],
+    tabs: ["asas"],
+    files: ["1.jpg", "2.jpeg"],
   },
   {
     folder: "pvc",
     label: "PVC collection",
-    tabs: ["pvc", "windows"],
+    tabs: ["pvc"],
+    files: ["1.jpg"],
+  },
+  {
+    folder: "steel",
+    label: "Steel collection",
+    tabs: ["steel"],
+    files: [],
+  },
+  {
+    folder: "wood",
+    label: "Wood collection",
+    tabs: ["wood"],
+    files: [],
   },
 ];
 
@@ -86,28 +149,17 @@ export default function ProjectsPage({ imageFiles = {} }) {
   const [visibleCount, setVisibleCount] = useState(16);
 
   const gallery = useMemo(() => {
-    const configuredFolders = new Set(imageGroups.map((group) => group.folder));
-    const additionalGroups = Object.keys(imageFiles)
-      .filter((folder) => !configuredFolders.has(folder))
-      .map((folder) => ({
-        folder,
-        label: `${folder.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase())} collection`,
-        tabs: tabs.some((tab) => tab.id === folder) ? [folder] : [],
-      }));
-
-    return [...imageGroups, ...additionalGroups].flatMap((group) =>
-      (imageFiles[group.folder] ?? []).map((file, index) => ({
-        id: `${group.folder}-${file}`,
-        src: `/projects/${group.folder}/${file}`,
-        title: `${group.label} ${String(index + 1).padStart(2, "0")}`,
-        label: group.label,
-        location: group.locations?.[index],
-        tabs:
-          group.aluminumImageCount !== undefined &&
-          index >= group.aluminumImageCount
-            ? group.tabs.filter((tab) => tab !== "aluminum")
-            : group.tabs,
-      })),
+    return imageGroups.flatMap((group) =>
+      group.files
+        .filter((file) => imageFiles[group.folder]?.includes(file))
+        .map((file, index) => ({
+          id: `${group.folder}-${file}`,
+          src: `/projects/${group.folder}/${file}`,
+          title: `${group.label} ${String(index + 1).padStart(2, "0")}`,
+          label: group.label,
+          location: group.locations?.[index],
+          tabs: group.tabs,
+        })),
     );
   }, [imageFiles]);
   const visibleProjects = useMemo(
