@@ -107,9 +107,9 @@ export default function HomePage() {
                 className="group/row rounded-3xl bg-[#0A2540] border border-slate-200/90 p-6 sm:p-8 lg:p-10 transition-[border-color,box-shadow] duration-300 hover:border-[#C59A45]/50 shadow-xl text-white"
               >
                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                  <div className="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0 lg:pr-8">
+                  <div className="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/50 pb-6 lg:pb-0 lg:pr-8">
                     <div className="flex items-baseline gap-4">
-                      <span className="font-heading text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-[linear-gradient(135deg,#ffffff_20%,#ba842d_100%)] leading-none select-none">
+                      <span className="font-heading text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-[#ebb760] leading-none select-none">
                         {category.letter}
                       </span>
                       <div>
@@ -117,14 +117,6 @@ export default function HomePage() {
                           {category.title}
                         </h3>
                       </div>
-                    </div>
-
-                    <div className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-slate-300">
-                      <Layers className="w-3.5 h-3.5 text-[#C59A45]" />
-                      <span>
-                        {category.brands.length}{' '}
-                        {category.brands.length === 1 ? 'Certified Partner' : 'Certified Partners'}
-                      </span>
                     </div>
                   </div>
 
@@ -193,21 +185,23 @@ export default function HomePage() {
                   target="_blank"
                   rel="noreferrer"
                   title={`Visit ${brand.name}`}
-                  className="group flex flex-col items-center justify-between rounded-2xl bg-white/[0.04] backdrop-blur-xs border border-white/10 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:border-[#C59A45]"
+                  className="group/card flex flex-col items-center justify-between rounded-2xl bg-white/[0.04] backdrop-blur-xs border border-white/10 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#C59A45] hover:shadow-md"
                 >
                   <div className="flex h-14 w-full items-center justify-center rounded-xl bg-white/95 p-2.5 shadow-xs">
                     <img
                       src={brand.logo}
                       alt={`${brand.name} logo`}
-                      className="max-h-10 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      className="max-h-10 w-full object-contain transition-transform duration-300 group-hover/card:scale-105"
                       loading="lazy"
                     />
                   </div>
                   <div className="mt-4 flex items-center justify-between w-full">
-                    <span className="text-xs font-bold text-white group-hover:text-[#0A2540] transition-colors">
+                    <span className="text-xs font-bold text-white">
                       {brand.name}
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#C59A45] opacity-70 group-hover:opacity-100" />
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 border border-white/20 text-white transition-all duration-200 group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45] group-hover/card:text-white">
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </span>
                   </div>
                 </a>
               ))}

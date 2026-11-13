@@ -19,7 +19,7 @@ export default function Footer({ currentRoute, onNavigate, onOpenQuote }) {
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#E6C687]">SWAP Windows Corp.</p>
             <h2 className="mt-1 text-2xl font-heading font-bold text-white">Wholesale windows, doors & glass.</h2>
-            <p className="mt-2 text-sm text-slate-400">Takeoffs, fabrication and job-site delivery for the window trade.</p>
+            {/* <p className="mt-2 text-sm text-slate-400">Takeoffs, fabrication and job-site delivery for the window trade.</p> */}
           </div>
           <button onClick={onOpenQuote} className="inline-flex items-center justify-center gap-2 rounded-lg bg-swap-gold-btn px-6 py-3 text-sm font-bold uppercase tracking-wider text-white">
             Get a quote <ArrowUpRight className="h-3.5 w-3.5" />
