@@ -296,7 +296,7 @@ export default function ProjectsPage({ imageFiles = {} }) {
                   aria-pressed={isActive}
                   className={`shrink-0 border px-4 py-2.5 text-[10px] font-bold tracking-wide transition-all duration-200 md:px-5 md:py-3 md:text-xs ${
                     isActive
-                      ? "border-[#c59a45] bg-[#bd0002] text-white shadow-md shadow-[#c59a45]/20"
+                      ? "border-[#c59a45] bg-[#002b5a] text-white shadow-md shadow-[#c59a45]/20"
                       : "border-slate-200 bg-gray-200 text-black hover:border-[#0a2540] hover:text-[#0a2540]"
                   }`}
                 >
@@ -310,9 +310,9 @@ export default function ProjectsPage({ imageFiles = {} }) {
 
       <section className="mx-auto max-w-[1500px] px-5 py-10 sm:px-10 md:py-14 lg:px-14">
         <div className="mb-7 flex justify-end">
-          <span className="hidden text-xs uppercase tracking-widest text-slate-400 sm:block">
+          {/* <span className="hidden text-xs uppercase tracking-widest text-slate-400 sm:block">
             Click any image to enlarge
-          </span>
+          </span> */}
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
@@ -364,12 +364,17 @@ export default function ProjectsPage({ imageFiles = {} }) {
             className="absolute inset-0 cursor-default"
             aria-label="Close project viewer"
           />
-          <div className="relative z-10 flex max-h-[92vh] w-full max-w-6xl items-center justify-center overflow-hidden bg-[#071b32] shadow-2xl">
+          <div className="relative z-10 flex max-h-[92vh] w-full max-w-6xl flex-col items-center justify-center overflow-hidden bg-[#071b32] shadow-2xl">
             <img
               src={selectedProject.src}
-              alt={selectedProject.title}
-              className="max-h-[92vh] w-full object-contain"
+              alt={selectedProject.name || selectedProject.title}
+              className="max-h-[82vh] w-full object-contain"
             />
+            {selectedProject.name && (
+              <span className="w-fit bg-[#bd0002] px-4 py-3 text-center text-sm font-bold text-white">
+                {selectedProject.name}
+              </span>
+            )}
             <button
               type="button"
               onClick={showPrevious}

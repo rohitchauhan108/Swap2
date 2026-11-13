@@ -125,15 +125,15 @@ export default function ContactPage() {
                       >
                         {COMPANY_INFO.email}
                       </a>
-                      <div className="text-sm text-slate-500 mt-0.5">
+                      {/* <div className="text-sm text-slate-500 mt-0.5">
                         Direct delivery for architectural schedules & takeoffs
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
+                {/* <div className="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-[#C59A45]" />
                     <span>USA Tested · European Tested Systems</span>
@@ -142,7 +142,7 @@ export default function ContactPage() {
                     <Truck className="w-4 h-4 text-[#C59A45]" />
                     <span>Prompt Crated Delivery Directly to Job Sites</span>
                   </div>
-                </div>
+                </div> */}
               </div>
 
             </div>
@@ -157,9 +157,9 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-heading font-bold text-[#0A2540]">
                     Submit Drawings for Project-Specific Pricing
                   </h3>
-                  <p className="text-sm text-slate-500">
+                  {/* <p className="text-sm text-slate-500">
                     Send us your architectural drawings and schedules. SWAP will prepare takeoffs, review the scope, and follow up promptly.
-                  </p>
+                  </p> */}
                 </div>
 
                 {submitted ? (
@@ -362,9 +362,9 @@ export default function ContactPage() {
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
               Frequently Asked Questions.
             </h2>
-            <p className="text-base text-slate-600 font-light">
+            {/* <p className="text-base text-slate-600 font-light">
               Clarifications for glazing contractors and window dealers partnering with SWAP Windows Corp.
-            </p>
+            </p> */}
           </div>
 
           <div className="space-y-4">
