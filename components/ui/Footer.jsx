@@ -31,7 +31,7 @@ export default function Footer({ currentRoute, onNavigate, onOpenQuote }) {
           <div className="space-y-3">
             <div className="bg-white p-2.5 rounded-lg inline-block shadow-sm">
               <img
-                src="/new-logo1.webp"
+                src="/new-logo1.png"
                 alt="SWAP Windows Corp."
                 className="md:w-[280px] w-[180px]"
               />
