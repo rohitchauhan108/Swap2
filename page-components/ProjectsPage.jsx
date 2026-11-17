@@ -45,7 +45,7 @@ const imageGroups = [
       "2.jpg",
       "3.jpg",
       "4.jpg",
-      "5.jpg",
+      // "5.jpg",
       "6.jpg",
       "7.jpg",
       "8.jpg",
@@ -59,7 +59,7 @@ const imageGroups = [
       "2.jpg": "5 Garfield Brooklyn NY",
       "3.jpg": "42 Church Monsey Airmont NY",
       "4.jpg": "COX CRO Lakewood School NJ",
-      "5.jpg": "834 Pacific",
+      // "5.jpg": "834 Pacific",
       "6.jpg": "Chester Coomunity Chester NY",
       "7.jpg": "554 Prospect ST.Brooklyn NY",
       "8.jpg": "210 North 10th Brooklyn NY",
@@ -108,13 +108,13 @@ const imageGroups = [
     folder: "reynaers",
     label: "Reynaers collection",
     tabs: ["reynaers"],
-    files: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+    files: ["1.jpg", "3.jpg", "4.jpg", "5.jpg", "6.webp"],
      names: {
       "1.jpg": "834 Pacific Brooklyn NY",
-      "2.jpg": "834 Pacific",
       "3.jpg": "554 Prospect ST.Brooklyn NY",
       "4.jpg": "184 Nostrand AVE Brooklyn NY",
       "5.jpg": "6015-Riverdale Bronx NY",
+      "6.webp": "402 Union Ave Brooklyn NY",
     },
   },
   {
@@ -161,20 +161,22 @@ const imageGroups = [
     folder: "aliplast",
     label: "Aliplast collection",
     tabs: ["aliplast"],
-    files: ["1.jpg", "2.jpg"],
+    files: ["1.jpg", "2.jpg", "3.jpeg"],
     names: {
       "1.jpg": "5 Garfield Brooklyn NY",
       "2.jpg": "COX CRO Lakewood School NJ",
+      "3.jpeg": "4350 Van Cortlandt Bronx NY",
     },
   },
   {
     folder: "asas",
     label: "ASAS collection",
     tabs: ["asas"],
-    files: ["1.jpg", "2.jpeg"],
+    files: ["1.jpg", "2.jpeg","3.jpeg"],
     names: {
       "1.jpg": "5 Garfield Brooklyn NY",
       "2.jpeg": "BR School 5 Kahan DR Monroe NY",
+      "3.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
     },
   },
   {
@@ -198,6 +200,16 @@ const imageGroups = [
     tabs: ["wood"],
     files: [],
   },
+  {
+    folder: "veratec",
+    label: "VERATEC",
+    tabs: ["veratec"],
+    files: ["1.jpg","2.jpeg"],
+    names: {
+      "1.jpg": "5 Garfield Brooklyn NY",
+      "2.jpeg": "3006 Williams Bridge BRONX NY",
+    },
+  },
 ];
 
 const tabs = [
@@ -215,6 +227,7 @@ const tabs = [
   { id: "aliplast", label: "ALIPLAST" },
   { id: "asas", label: "ASAS" },
   { id: "hansen", label: "HANSEN - SLIM AS STEEL" },
+  { id: "veratec", label: "VERATEC" },
 ];
 
 export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
@@ -250,9 +263,13 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
         if (!project.name) return true;
 
         const normalizedName = project.name.toLocaleLowerCase();
-        if (seenNames.has(normalizedName)) return false;
+        const deduplicationKey =
+          normalizedName === "834 pacific"
+            ? "834 pacific brooklyn ny"
+            : normalizedName;
+        if (seenNames.has(deduplicationKey)) return false;
 
-        seenNames.add(normalizedName);
+        seenNames.add(deduplicationKey);
         return true;
       });
     },

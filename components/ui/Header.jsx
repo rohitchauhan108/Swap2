@@ -37,7 +37,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               STEEL · WOOD · ALUMINUM · PVC
             </span>
           </div> */}
-          <div className="hidden items-center gap-5 text-[11px] tracking-wide md:flex">
+          <div className="hidden items-center gap-5 text-[15px] tracking-wide md:flex">
             <a
               href={`tel:${COMPANY_INFO.phoneClean}`}
               className="flex items-center gap-1.5 text-white transition-colors hover:text-[#E6C687]"
