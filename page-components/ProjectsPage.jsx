@@ -210,6 +210,15 @@ const imageGroups = [
       "2.jpeg": "3006 Williams Bridge BRONX NY",
     },
   },
+  {
+    folder: "aluplast",
+    label: "ALUPROF",
+    tabs: ["aluplast"],
+    files: ["1.jpeg"],
+    names: {
+      "1.jpeg": "4350 Van Cortlandt Bronx NY",
+    },
+  },
 ];
 
 const tabs = [
@@ -228,6 +237,7 @@ const tabs = [
   { id: "asas", label: "ASAS" },
   { id: "hansen", label: "HANSEN - SLIM AS STEEL" },
   { id: "veratec", label: "VERATEC" },
+  { id: "aluplast", label: "ALUPROF" },
 ];
 
 export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
