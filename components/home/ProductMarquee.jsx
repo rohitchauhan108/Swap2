@@ -24,7 +24,10 @@ export default function ProductMarquee() {
     <nav className="flex items-stretch overflow-hidden border-y border-[#163659] bg-[#061426] text-white" aria-label="Project categories">
       <Link
         href="/projects?category=all"
-        className="flex shrink-0 items-center bg-white px-4 font-heading text-lg font-semibold tracking-wide text-[#061426] transition-colors hover:text-[#C59A45] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C59A45] sm:px-6 sm:text-xl"
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, calc(100% - 2rem) 50%, 100% 100%, 0 100%)',
+        }}
+        className="z-10 flex shrink-0 items-center bg-white py-2 pl-4 pr-12 font-heading text-lg font-semibold tracking-wide text-[#061426] transition-colors hover:text-[#C59A45] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C59A45] sm:pl-6 sm:pr-14 sm:text-xl"
       >
         ALL PROJECTS
       </Link>
