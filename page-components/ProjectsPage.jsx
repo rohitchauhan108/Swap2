@@ -212,7 +212,7 @@ const imageGroups = [
   },
   {
     folder: "aluplast",
-    label: "ALUPROF",
+    label: "ALUPLAST",
     tabs: ["aluplast"],
     files: ["1.jpeg"],
     names: {
@@ -234,10 +234,10 @@ const tabs = [
   { id: "aluprof", label: "ALUPROF" },
   { id: "reynaers", label: "REYNAERS" },
   { id: "aliplast", label: "ALIPLAST" },
+  { id: "aluplast", label: "ALUPLAST" },
   { id: "asas", label: "ASAS" },
   { id: "hansen", label: "HANSEN - SLIM AS STEEL" },
   { id: "veratec", label: "VERATEC" },
-  { id: "aluplast", label: "ALUPROF" },
 ];
 
 export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
