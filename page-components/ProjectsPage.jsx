@@ -280,6 +280,7 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
         eyebrow="Selected installations"
         title="Our Latest Projects"
         description="Explore our window, door, curtain wall, and architectural glazing references."
+        align="center"
       />
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-5 pb-10 pt-14 sm:px-10 sm:pb-12 sm:pt-16 lg:px-14">

@@ -78,6 +78,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Trade Communications & Estimating"
         title="Contact Us & Submit Takeoffs."
+        align="center"
       />
 
       {/* Main Contact & Form Section */}
@@ -332,9 +333,9 @@ export default function ContactPage() {
                     </div>
 
                     <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                      <div className="text-xs text-slate-500">
+                      {/* <div className="text-xs text-slate-500">
                         Protected trade pricing · Quick takeoff turnaround
-                      </div>
+                      </div> */}
 
                       <button
                         type="submit"

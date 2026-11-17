@@ -24,7 +24,8 @@ export default function SWAPHeroSection() {
         {/* Real Architectural Building Facade Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src={swapBuildingFacade}
+            // src={swapBuildingFacade}
+            src="/images/hero-section.webp"
             alt="SWAP Windows Corp. - Architectural Building Facade with Steel, Wood, Aluminum, and PVC Fenestration"
             className="w-full h-full object-cover object-center brightness-100 contrast-100 transition-transform duration-1000 scale-100 hover:scale-[1.02]"
           />

@@ -26,8 +26,8 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* Top Utility Announcement Bar with SWAP Logo Blue Gradient */}
       <div className="bg-gradient-to-r from-[#00132B] via-[#001F43] to-[#0A3366] text-slate-200 text-xs py-2 px-4 sm:px-8 border-b border-[#143E6D]/50">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 font-medium">
-          <div className="flex items-center gap-4 text-[11px] sm:text-xs tracking-wider">
+        <div className="max-w-7xl mx-auto flex justify-end gap-3 font-medium lg:pr-10">
+          {/* <div className="flex items-center gap-4 text-[11px] sm:text-xs tracking-wider">
             <span className="flex items-center gap-1.5 text-[#E6C687]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#E6C687]" />
               USA TESTED · EUROPEAN TESTED
@@ -36,7 +36,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
             <span className="hidden md:inline text-slate-300 tracking-wider">
               STEEL · WOOD · ALUMINUM · PVC
             </span>
-          </div>
+          </div> */}
           <div className="hidden items-center gap-5 text-[11px] tracking-wide md:flex">
             <a
               href={`tel:${COMPANY_INFO.phoneClean}`}
@@ -73,9 +73,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               aria-label="SWAP Windows Corp. Homepage"
             >
               <img
-                src="/logo-transparent.webp"
+                src="/new-logo.webp"
                 alt="SWAP Windows Corp."
-                className=" md:w-[230px] w-[150px]   transition-transform group-hover:scale-[1.02]"
+                className=" md:w-[250px] w-[200px]   transition-transform group-hover:scale-[1.02]"
               />
             </button>
           </div>
