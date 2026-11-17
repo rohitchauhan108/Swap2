@@ -21,7 +21,7 @@ const PROJECT_CATEGORIES = [
 
 export default function ProductMarquee() {
   return (
-    <nav className="flex items-stretch overflow-hidden border-y border-[#163659] bg-[#061426] text-white" aria-label="Project categories">
+    <nav className="flex items-stretch overflow-hidden  bg-[#061426] text-white" aria-label="Project categories">
       <Link
         href="/projects?category=all"
         style={{
