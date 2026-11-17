@@ -24,7 +24,7 @@ export default function ProductMarquee() {
     <nav className="flex items-stretch overflow-hidden border-y border-[#163659] bg-[#061426] text-white" aria-label="Project categories">
       <Link
         href="/projects?category=all"
-        className="flex shrink-0 items-center bg-white px-4 text-sm text-[#061426] sm:px-6 sm:text-base font-semibold tracking-wide"
+        className="flex shrink-0 items-center bg-white px-4 font-heading text-lg font-semibold tracking-wide text-[#061426] transition-colors hover:text-[#C59A45] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C59A45] sm:px-6 sm:text-xl"
       >
         ALL PROJECTS
       </Link>
