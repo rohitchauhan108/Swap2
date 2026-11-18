@@ -90,10 +90,10 @@ const imageGroups = [
     folder: "aluprof",
     label: "Aluprof collection",
     tabs: ["aluprof"],
-    files: ["1.jpeg", "2.jpeg",],
+    files: ["1.jpeg"],
     names: {
       "1.jpeg": "BR School 5 Kahan DR Monroe NY",
-      "2.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
+      // "2.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
     },
   },
   {
@@ -163,11 +163,11 @@ const imageGroups = [
     folder: "asas",
     label: "ASAS collection",
     tabs: ["asas"],
-    files: ["2.jpeg","3.jpeg"],
+    files: ["2.jpeg"],
     names: {
       // "1.jpg": "5 Garfield Brooklyn NY",
       "2.jpeg": "BR School 5 Kahan DR Monroe NY",
-      "3.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
+      // "3.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
     },
   },
   {
