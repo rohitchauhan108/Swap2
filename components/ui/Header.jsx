@@ -23,7 +23,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full transition-all duration-300 lg:static">
       {/* Top Utility Announcement Bar with SWAP Logo Blue Gradient */}
       <div className="bg-gradient-to-r from-[#00132B] via-[#001F43] to-[#0A3366] text-slate-200 text-xs py-2 px-4 sm:px-8 border-b border-[#143E6D]/50">
         <div className="max-w-7xl mx-auto flex justify-end gap-3 font-medium lg:pr-10">

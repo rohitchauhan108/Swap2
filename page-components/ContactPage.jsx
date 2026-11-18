@@ -50,7 +50,7 @@ export default function ContactPage() {
 
     if (isSubmitting || !validate()) return;
 
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const publicKey = "rWWHLzNsyDThId7TW";
     if (!publicKey) {
       console.error('EmailJS is not configured: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY is missing.');
       setSubmissionError('The contact form is temporarily unavailable. Please contact us directly by email or phone.');
@@ -63,7 +63,7 @@ export default function ContactPage() {
     try {
       await emailjs.send(
         'service_dp4k7xw',
-        'template_qxj2rzn',
+        'template_lxzbun6',
         {
           ...formData,
           project_type: formData.projectType,
