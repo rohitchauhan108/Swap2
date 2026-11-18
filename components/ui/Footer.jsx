@@ -7,7 +7,7 @@ import { COMPANY_INFO } from '@/data/companyData';
 export default function Footer({ currentRoute, onNavigate, onOpenQuote }) {
   const footerLinks = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'about', label: 'Swap Partnership' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];

@@ -17,7 +17,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'about', label: 'Swap Partnership' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];

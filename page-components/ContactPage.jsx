@@ -273,7 +273,7 @@ export default function ContactPage() {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="e.g. 877-212-7927"
+                          placeholder="e.g.  877 212 Swap (7927)"
                           className={`w-full px-3.5 py-2.5 text-sm rounded border ${
                             errors.phone ? 'border-red-500' : 'border-slate-300'
                           } focus:outline-none focus:border-[#0A2540]`}
@@ -354,7 +354,7 @@ export default function ContactPage() {
       </section>
 
       {/* Trade FAQs */}
-      <section className="py-20 bg-white border-t border-slate-200">
+      {/* <section className="py-20 bg-white border-t border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
             <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
@@ -363,9 +363,6 @@ export default function ContactPage() {
             <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
               Frequently Asked Questions.
             </h2>
-            {/* <p className="text-base text-slate-600 font-light">
-              Clarifications for glazing contractors and window dealers partnering with SWAP Windows Corp.
-            </p> */}
           </div>
 
           <div className="space-y-4">
@@ -405,7 +402,7 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
