@@ -64,9 +64,9 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
             : 'bg-white border-b border-slate-100 py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-8">
-          {/* Zone 1: Brand Logo */}
-          <div className="flex items-center shrink-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-[1fr_auto] items-center gap-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
+          {/* Brand Logo */}
+          <div className="flex items-center shrink-0 lg:col-start-2 lg:row-start-1">
             <button
               onClick={() => onNavigate('home')}
               className="flex items-center gap-3 text-left focus:outline-none group"
@@ -75,14 +75,14 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               <img
                 src="/new-logo.webp"
                 alt="SWAP Windows Corp."
-                className=" md:w-[250px] w-[200px]   transition-transform group-hover:scale-[1.02]"
+                className=" md:w-[350px] w-[200px]   transition-transform group-hover:scale-[1.02]"
               />
             </button>
           </div>
 
-          {/* Zone 2: Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-8 text-lg font-medium text-slate-700">
-            {navItems.map((item) => {
+          {/* Primary Navigation (Desktop) */}
+          <nav className="hidden lg:flex lg:col-start-1 lg:row-start-1 items-center justify-self-start gap-6 text-base font-medium text-slate-700">
+            {navItems.slice(0, 3).map((item) => {
               const isActive = currentRoute === item.id;
               return (
                 <button
@@ -104,8 +104,22 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
             })}
           </nav>
 
-          {/* Zone 3: 1 Primary Action (Desktop) */}
-          <div className="hidden lg:flex items-center gap-4 shrink-0">
+          {/* Secondary Navigation and Primary Action (Desktop) */}
+          <div className="hidden lg:flex lg:col-start-3 lg:row-start-1 items-center justify-self-end gap-5 shrink-0">
+            <button
+              onClick={() => onNavigate('contact')}
+              aria-current={currentRoute === 'contact' ? 'page' : undefined}
+              className={`relative py-2.5 text-base font-medium transition-colors whitespace-nowrap ${
+                currentRoute === 'contact'
+                  ? 'text-[#0A2540] font-semibold'
+                  : 'text-slate-600 hover:text-[#0A2540]'
+              }`}
+            >
+              Contact
+              {currentRoute === 'contact' && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C59A45]" />
+              )}
+            </button>
             <button
               onClick={onOpenQuote}
               className="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-swap-gold-btn rounded-lg shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2 border border-[#D4A143]/50"
@@ -116,7 +130,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           </div>
 
           {/* Mobile Hamburger Button */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="flex lg:hidden col-start-2 row-start-1 items-center justify-self-end gap-3">
             <button
               onClick={onOpenQuote}
               className="px-3.5 py-2 text-xs font-semibold text-white bg-swap-gold-btn rounded-lg whitespace-nowrap"
