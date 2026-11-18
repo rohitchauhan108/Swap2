@@ -304,7 +304,7 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
       />
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-5 pb-10 pt-14 sm:px-10 sm:pb-12 sm:pt-16 lg:px-14">
-          <div className="tabs-scroll mx-auto mt-10 flex max-w-6xl gap-2 overflow-x-auto pb-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
+          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -317,7 +317,7 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
                     setSelectedIndex(null);
                   }}
                   aria-pressed={isActive}
-                  className={`shrink-0 border px-4 py-2.5 text-[10px] font-bold tracking-wide transition-all duration-200 md:px-5 md:py-3 md:text-xs ${
+                  className={`w-full border px-2 py-2.5 text-[9px] font-bold tracking-wide transition-all duration-200 sm:w-auto sm:px-4 md:px-5 md:py-3 md:text-xs ${
                     isActive
                       ? "border-[#c59a45] bg-[#002b5a] text-white shadow-md shadow-[#c59a45]/20"
                       : "border-slate-200 bg-gray-200 text-black hover:border-[#0a2540] hover:text-[#0a2540]"
