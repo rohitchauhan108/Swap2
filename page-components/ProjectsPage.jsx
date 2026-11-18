@@ -254,7 +254,10 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
   }, [imageFiles]);
   const visibleProjects = useMemo(
     () => {
-      if (activeTab !== "all") {
+      if (
+        activeTab !== "all" &&
+        !["steel", "wood", "aluminum", "pvc"].includes(activeTab)
+      ) {
         return gallery.filter((project) => project.tabs.includes(activeTab));
       }
 
@@ -273,7 +276,7 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
         return true;
       });
     },
-    [activeTab],
+    [activeTab, gallery],
   );
   const displayedProjects = visibleProjects.slice(0, visibleCount);
   const selectedProject =
