@@ -75,13 +75,13 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               <img
                 src="/new-logo.webp"
                 alt="SWAP Windows Corp."
-                className=" md:w-[350px] w-[200px]   transition-transform group-hover:scale-[1.02]"
+                className="w-[min(40vw,150px)] sm:w-[200px] md:w-[350px] transition-transform group-hover:scale-[1.02]"
               />
             </button>
           </div>
 
           {/* Primary Navigation (Desktop) */}
-          <nav className="hidden lg:flex lg:col-start-1 lg:row-start-1 items-center justify-self-start gap-6 text-base font-medium text-slate-700">
+          <nav className="hidden lg:flex lg:col-start-1 lg:row-start-1 items-center justify-self-start gap-6 text-[18px] font-medium text-slate-700">
             {navItems.slice(0, 3).map((item) => {
               const isActive = currentRoute === item.id;
               return (
@@ -109,7 +109,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
             <button
               onClick={() => onNavigate('contact')}
               aria-current={currentRoute === 'contact' ? 'page' : undefined}
-              className={`relative py-2.5 text-base font-medium transition-colors whitespace-nowrap ${
+              className={`relative py-2.5 text-[18px] font-medium transition-colors whitespace-nowrap ${
                 currentRoute === 'contact'
                   ? 'text-[#0A2540] font-semibold'
                   : 'text-slate-600 hover:text-[#0A2540]'
@@ -138,9 +138,12 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               Get Quote
             </button>
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-slate-700 hover:text-[#0A2540] focus:outline-none"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -150,7 +153,10 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[120px] bottom-0 bg-white z-40 border-t border-slate-200 overflow-y-auto px-6 py-8 flex flex-col justify-between animate-in slide-in-from-top-4 duration-200">
+        <div
+          id="mobile-navigation-menu"
+          className="lg:hidden absolute inset-x-0 top-full z-50 flex max-h-[calc(100dvh-7rem)] flex-col justify-between overflow-y-auto border-t border-slate-200 bg-white px-6 py-8 animate-in slide-in-from-top-4 duration-200"
+        >
           <div className="space-y-6">
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => {
