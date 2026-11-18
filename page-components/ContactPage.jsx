@@ -5,7 +5,6 @@ import emailjs from '@emailjs/browser';
 import {
   Phone,
   Mail,
-  CheckCircle2,
   ArrowRight,
   ShieldCheck,
   Truck,
@@ -197,53 +196,10 @@ export default function ContactPage() {
                 </div>
 
                 {submitted ? (
-                  <div className="text-center py-12 space-y-6 animate-in zoom-in-95 duration-200">
-                    <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-                      <CheckCircle2 className="w-10 h-10" />
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-2xl font-heading font-bold text-slate-900">
-                        Inquiry & Takeoff Received
-                      </h4>
-                      <p className="text-base text-slate-600 max-w-md mx-auto">
-                        Thank you, <span className="font-semibold text-slate-800">{formData.name}</span>. We have logged your takeoff request for{' '}
-                        <span className="font-semibold text-slate-800">{formData.company}</span>. Our estimating team will follow up promptly with scope review and trade pricing.
-                      </p>
-                    </div>
-
-                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-5 max-w-md mx-auto text-left text-xs space-y-2">
-                      <div className="flex justify-between border-b border-slate-200 pb-2">
-                        <span className="text-slate-500">Material Interest:</span>
-                        <span className="font-semibold text-slate-800">{formData.material}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-slate-200 pb-2">
-                        <span className="text-slate-500">Project Type:</span>
-                        <span className="font-semibold text-slate-800">{formData.projectType}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Direct Contact:</span>
-                        <span className="font-semibold text-[#0A2540]">{COMPANY_INFO.phone}</span>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        setSubmitted(false);
-                        setFormData({
-                          name: '',
-                          company: '',
-                          email: '',
-                          phone: '',
-                          projectType: 'Commercial',
-                          material: 'Aluminum',
-                          message: '',
-                        });
-                      }}
-                      className="px-6 py-2.5 bg-swap-blue-btn text-white text-xs font-semibold uppercase tracking-wider rounded-lg shadow border border-[#1A4B82]/50"
-                    >
-                      Submit Another Takeoff
-                    </button>
+                  <div className="py-12 text-center">
+                    <p className="text-base text-slate-600">
+                      <span className="text-2xl text-[#0A2540] font-bold">Thank you for contacting us! </span><br /> We’ll get back to you soon.
+                    </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
