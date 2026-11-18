@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   Phone,
   Mail,
@@ -26,6 +27,8 @@ export default function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
   const [errors, setErrors] = useState({});
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -43,10 +46,40 @@ export default function ContactPage() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
+
+    if (isSubmitting || !validate()) return;
+
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (!publicKey) {
+      console.error('EmailJS is not configured: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY is missing.');
+      setSubmissionError('The contact form is temporarily unavailable. Please contact us directly by email or phone.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmissionError('');
+
+    try {
+      await emailjs.send(
+        'service_dp4k7xw',
+        'template_qxj2rzn',
+        {
+          ...formData,
+          project_type: formData.projectType,
+          from_name: formData.name,
+          from_email: formData.email,
+          reply_to: formData.email,
+        },
+        publicKey
+      );
       setSubmitted(true);
+    } catch (error) {
+      console.error('EmailJS contact form submission failed:', error);
+      setSubmissionError('We could not send your inquiry. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -214,6 +247,11 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {submissionError && (
+                      <p role="alert" className="text-sm text-red-600">
+                        {submissionError}
+                      </p>
+                    )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
@@ -339,9 +377,10 @@ export default function ContactPage() {
 
                       <button
                         type="submit"
+                        disabled={isSubmitting}
                         className="w-full sm:w-auto px-8 py-3.5 bg-swap-blue-btn text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-md flex items-center justify-center gap-2 border border-[#1A4B82]/50"
                       >
-                        <span>Submit Project Inquiry</span>
+                        <span>{isSubmitting ? 'Sending Inquiry...' : 'Submit Project Inquiry'}</span>
                         <ArrowRight className="w-4 h-4 text-[#E6C687]" />
                       </button>
                     </div>
