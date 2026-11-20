@@ -82,7 +82,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                   className={`relative flex shrink-0 items-center gap-1.5 whitespace-nowrap py-2.5 transition-colors ${
                     isActive
                       ? 'font-bold text-[#0A2540]'
-                      : 'text-[#334b66] hover:text-[#0A2540]'
+                      : 'text-[#0A2540] hover:text-[#001831]'
                   }`}
                 >
                   {item.label}
@@ -102,7 +102,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
               className={`relative py-2.5 text-[20px] font-medium transition-colors whitespace-nowrap ${
                 currentRoute === 'contact'
                   ? 'font-bold text-[#0A2540]'
-                  : 'text-[#334b66] hover:text-[#0A2540]'
+                  : 'text-[#0A2540] hover:text-[#001831]'
               }`}
             >
               Contact

@@ -14,7 +14,6 @@ const SWAP_CATEGORIES = [
     accent: 'from-slate-800 to-slate-900',
     brands: [
       { name: 'Forster', origin: 'Switzerland', logo: '/brands/forester.png', url: 'https://www.forstersystems.ch/' },
-      { name: 'Hansen - Slim as Steel', origin: 'Denmark', logo: '/brands/alumimium/hansen.png', url: 'https://hansensystems.com/' },
     ],
   },
   {
@@ -38,6 +37,7 @@ const SWAP_CATEGORIES = [
       { name: 'Schüco', origin: 'Germany', logo: '/brands/alumimium/schuco.png', url: 'https://www.schueco.com/' },
       { name: 'ASAS', origin: 'Turkey', logo: '/brands/asas.png', url: 'https://www.asasalu.com/' },
       { name: 'Aliplast', origin: 'Belgium', logo: '/brands/aliplast.png', url: 'https://www.aliplast.com/en' },
+      { name: 'Hansen - Slim as Steel', origin: 'Denmark', logo: '/brands/alumimium/hansen.png', url: 'https://hansensystems.com/' },
     ],
   },
   {
@@ -60,7 +60,12 @@ const GLASS_BRANDS = [
   { name: 'AGC', logo: '/brands/glass/agc.png', url: 'https://www.agc.com/' },
 ];
 
-const ALL_BRANDS = [...SWAP_CATEGORIES.flatMap((category) => category.brands), ...GLASS_BRANDS];
+const ALL_BRANDS = [
+  ...SWAP_CATEGORIES.flatMap((category) =>
+    category.brands.map((brand) => ({ ...brand, category: category.title })),
+  ),
+  ...GLASS_BRANDS.map((brand) => ({ ...brand, category: 'Glass' })),
+];
 
 function BrandLogoCard({ brand, isDuplicate }) {
   return (
@@ -81,8 +86,13 @@ function BrandLogoCard({ brand, isDuplicate }) {
           loading="lazy"
         />
       </div>
-      <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3">
-        <span className="text-xs font-bold text-white">{brand.name}</span>
+      <div className="mt-4 flex items-center justify-between gap-2 border-t border-white/10 pt-3">
+        <div className="min-w-0">
+          <span className="block text-xs font-bold text-white">{brand.name}</span>
+          <span className="mt-2 inline-block rounded-md border border-[#C59A45]/50 bg-[#C59A45] px-2 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-white shadow-sm">
+            {brand.category}
+          </span>
+        </div>
         <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-200 group-hover/card:border-[#C59A45] group-hover/card:bg-[#C59A45]">
           <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
