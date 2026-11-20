@@ -81,9 +81,10 @@ const imageGroups = [
     folder: "aluprof",
     label: "Aluprof collection",
     tabs: ["aluprof"],
-    files: ["1.jpeg"],
+    files: ["1.jpg", "2.jpg"],
     names: {
-      "1.jpeg": "BR School 5 Kahan DR Monroe NY",
+      "1.jpg": "School Lake wood NJ",
+      "2.jpg": "RT70 Lakewood NJ",
     },
   },
   {
