@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 
@@ -11,7 +12,6 @@ const imageGroups = [
     tabs: ["aluminum"],
     files: [
       "1.jpg",
-      // "2.jpg",
       "3.jpg",
       "4.jpg",
       "5.jpg",
@@ -22,7 +22,6 @@ const imageGroups = [
     ],
     names: {
       "1.jpg": "834 Pacific Brooklyn NY",
-      // "2.jpg": "5 Garfield Brooklyn NY",
       "3.jpg": "42 Church Monsey Airmont NY",
       "4.jpg": "COX CRO Lakewood School NJ",
       "5.jpg": "BR School Y Goldberger Monroe NY",
@@ -38,27 +37,23 @@ const imageGroups = [
     tabs: ["windows"],
     files: [
       "1.jpg",
-      // "2.jpg",
       "3.jpg",
       "4.jpg",
-      // "5.jpg",
       "6.jpg",
       "9.jpg",
       "10.jpg",
       "11.jpeg",
-      "12.jpeg",
+      "12.jpg",
     ],
      names: {
       "1.jpg": "834 Pacific Brooklyn NY",
-      // "2.jpg": "5 Garfield Brooklyn NY",
       "3.jpg": "42 Church Monsey Airmont NY",
       "4.jpg": "COX CRO Lakewood School NJ",
-      // "5.jpg": "834 Pacific",
       "6.jpg": "Chester Coomunity Chester NY",
       "9.jpg": "184 Nostrand AVE Brooklyn NY",
       "10.jpg": "6015-Riverdale Bronx NY",
       "11.jpeg": "BR School 5 Kahan DR Monroe NY",
-      "12.jpeg": "77 Gerry Brooklyn NY",
+      "12.jpg": "77 Gerry Brooklyn NY",
     },
   },
   {
@@ -66,24 +61,20 @@ const imageGroups = [
     label: "Door collection",
     tabs: ["doors"],
     files: [
-      // "1.jpg",
       "2.jpg",
       "3.jpg",
       "4.jpg",
       "5.jpg",
       "6.jpg",
       "7.jpeg",
-      "8.jpg",
     ],
     names: {
-      // "1.jpg": "5 Garfield Brooklyn NY",
       "2.jpg": "42 Church Monsey Airmont NY",
       "3.jpg": "206 Ditmas Brooklyn NY",
       "4.jpg": "Chester Coomunity Chester NY",
       "5.jpg": "184 Nostrand AVE Brooklyn NY",
       "6.jpg": "120 Grove Monsey NY",
       "7.jpeg": "77 Gerry Brooklyn NY",
-      "8.jpg": "BR School Monroe NY",
     },
   },
   {
@@ -93,7 +84,15 @@ const imageGroups = [
     files: ["1.jpeg"],
     names: {
       "1.jpeg": "BR School 5 Kahan DR Monroe NY",
-      // "2.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
+    },
+  },
+  {
+    folder: "aluminimum",
+    label: "Aluprof collection",
+    tabs: ["aluprof"],
+    files: ["5.jpg"],
+    names: {
+      "5.jpg": "BR School Y Goldberger Monroe NY",
     },
   },
   {
@@ -124,13 +123,8 @@ const imageGroups = [
   {
     folder: "hansen-slim-as-steel",
     label: "Hansen Slim AS Steel",
-    tabs: ["hansen"],
+    tabs: ["hansen", "steel"],
     files: ["1.jpg", "2.jpg", "3.jpg"],
-    // locations: [
-    //   "206 Ditmas Brooklyn NY",
-    //   "120 Grove Monsey NY",
-    //   "77 Gerry Brooklyn NY",
-    // ],
     names: {
       "1.jpg": "206 Ditmas Brooklyn NY",
       "2.jpg": "120 Grove Monsey NY",
@@ -141,11 +135,11 @@ const imageGroups = [
     folder: "wall-to-wall",
     label: "Wall to wall collection",
     tabs: ["wall-to-wall"],
-    files: ["1.jpg", "2.jpg", "3.jpeg"],
+    files: ["1.jpg", "2.jpg", "3.jpg"],
     names: {
       "1.jpg": "206 Ditmas Brooklyn NY",
       "2.jpg": "120 Grove Monsey NY",
-      "3.jpeg": "77 Gerry Brooklyn NY",
+      "3.jpg": "77 Gerry Brooklyn NY",
     },
   },
   {
@@ -165,15 +159,13 @@ const imageGroups = [
     tabs: ["asas"],
     files: ["2.jpeg"],
     names: {
-      // "1.jpg": "5 Garfield Brooklyn NY",
       "2.jpeg": "BR School 5 Kahan DR Monroe NY",
-      // "3.jpeg": "BR School Egress Windows Buying Guide – The Home Depot",
     },
   },
   {
     folder: "pvc",
     label: "PVC collection",
-    tabs: ["pvc"],
+    tabs: ["pvc", "veratec"],
     files: ["1.jpg"],
     names: {
       "1.jpg": "West 139 Street NYC",
@@ -194,7 +186,7 @@ const imageGroups = [
   {
     folder: "veratec",
     label: "VERATEC",
-    tabs: ["veratec"],
+    tabs: ["veratec", "pvc"],
     files: ["2.jpeg"],
     names: {
       "2.jpeg": "3006 Williams Bridge BRONX NY",
@@ -203,7 +195,7 @@ const imageGroups = [
   {
     folder: "aluplast",
     label: "ALUPLAST",
-    tabs: ["aluplast"],
+    tabs: ["aluplast", "pvc"],
     files: ["1.jpeg"],
     names: {
       "1.jpeg": "4350 Van Cortlandt Bronx NY",
@@ -217,10 +209,6 @@ const tabs = [
   { id: "wood", label: "W (WOOD)" },
   { id: "aluminum", label: "A (ALUMINUM)" },
   { id: "pvc", label: "P (PVC)" },
-  // { id: "windows", label: "WINDOWS" },
-  // { id: "curtain-walls", label: "CURTAIN WALLS" },
-  // { id: "doors", label: "DOORS" },
-  // { id: "wall-to-wall", label: "WALL TO WALL" },
   { id: "aluprof", label: "ALUPROF" },
   { id: "reynaers", label: "REYNAERS" },
   { id: "aliplast", label: "ALIPLAST" },
@@ -231,18 +219,31 @@ const tabs = [
 ];
 
 export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState(() =>
     tabs.some((tab) => tab.id === initialCategory) ? initialCategory : "all",
   );
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [visibleCount, setVisibleCount] = useState(16);
 
+  useEffect(() => {
+    if (tabs.some((tab) => tab.id === initialCategory)) {
+      setActiveTab(initialCategory);
+      setVisibleCount(16);
+      setSelectedIndex(null);
+    } else {
+      setActiveTab("all");
+      setVisibleCount(16);
+      setSelectedIndex(null);
+    }
+  }, [initialCategory]);
+
   const gallery = useMemo(() => {
     return imageGroups.flatMap((group) =>
       group.files
         .filter((file) => imageFiles[group.folder]?.includes(file))
         .map((file, index) => ({
-          id: `${group.folder}-${file}`,
+          id: `${group.folder}-${file}-${group.tabs.join("-")}`,
           src: `/projects/${group.folder}/${file}`,
           title: `${group.label} ${String(index + 1).padStart(2, "0")}`,
           name: group.names?.[file]?.trim(),
@@ -254,27 +255,41 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
   }, [imageFiles]);
   const visibleProjects = useMemo(
     () => {
-      if (
-        activeTab !== "all" &&
-        !["steel", "wood", "aluminum", "pvc"].includes(activeTab)
-      ) {
+      const allProjects = (() => {
+        const seenNames = new Set();
+        return gallery.filter((project) => {
+          if (!project.name) return true;
+
+          const normalizedName = project.name.toLocaleLowerCase();
+          const deduplicationKey =
+            normalizedName === "834 pacific"
+              ? "834 pacific brooklyn ny"
+              : normalizedName;
+          if (seenNames.has(deduplicationKey)) return false;
+
+          seenNames.add(deduplicationKey);
+          return true;
+        });
+      })();
+
+      if (activeTab === "aluminum") {
+        const pvcProjectNames = new Set([
+          "4350 Van Cortlandt Bronx NY",
+          "3006 Williams Bridge BRONX NY",
+          "West 139 Street NYC",
+        ]);
+        return gallery.filter((project) => !pvcProjectNames.has(project.name));
+      }
+
+      if (["steel", "wood"].includes(activeTab)) {
+        return allProjects;
+      }
+
+      if (activeTab !== "all") {
         return gallery.filter((project) => project.tabs.includes(activeTab));
       }
 
-      const seenNames = new Set();
-      return gallery.filter((project) => {
-        if (!project.name) return true;
-
-        const normalizedName = project.name.toLocaleLowerCase();
-        const deduplicationKey =
-          normalizedName === "834 pacific"
-            ? "834 pacific brooklyn ny"
-            : normalizedName;
-        if (seenNames.has(deduplicationKey)) return false;
-
-        seenNames.add(deduplicationKey);
-        return true;
-      });
+      return allProjects;
     },
     [activeTab, gallery],
   );
@@ -315,6 +330,7 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
                     setActiveTab(tab.id);
                     setVisibleCount(16);
                     setSelectedIndex(null);
+                    router.replace(`/projects?category=${tab.id}`, { scroll: false });
                   }}
                   aria-pressed={isActive}
                   className={`w-full border px-2 py-2.5 text-[9px] font-bold tracking-wide transition-all duration-200 sm:w-auto sm:px-4 md:px-5 md:py-3 md:text-xs ${
@@ -333,9 +349,6 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
 
       <section className="mx-auto max-w-[1500px] px-5 py-10 sm:px-10 md:py-14 lg:px-14">
         <div className="mb-7 flex justify-end">
-          {/* <span className="hidden text-xs uppercase tracking-widest text-slate-400 sm:block">
-            Click any image to enlarge
-          </span> */}
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
@@ -357,11 +370,6 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
                   {project.name}
                 </span>
               )}
-              {/* {project.location && (
-                <span className="block bg-[#d40000] px-2 py-2 text-center text-xs font-bold text-white">
-                  {project.location}
-                </span>
-              )} */}
             </button>
           ))}
         </div>

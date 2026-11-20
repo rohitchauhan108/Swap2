@@ -6,10 +6,6 @@ import {
   Phone,
   Mail,
   ArrowRight,
-  ShieldCheck,
-  Truck,
-  HelpCircle,
-  ChevronDown
 } from 'lucide-react';
 import { COMPANY_INFO } from '@/data/companyData';
 import PageHero from '@/components/ui/PageHero';
@@ -29,8 +25,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState('');
   const [errors, setErrors] = useState({});
-  const [openFaq, setOpenFaq] = useState(null);
-
   const validate = () => {
     const errs = {};
     if (!formData.name.trim()) errs.name = 'Full name is required';
@@ -81,29 +75,6 @@ export default function ContactPage() {
       setIsSubmitting(false);
     }
   };
-
-  const faqs = [
-    {
-      q: 'What format should architectural drawings and schedules be submitted in?',
-      a: 'We accept PDF schedules, CAD files (.dwg, .dxf), BIM models, and Excel window takeoff schedules. Our estimating team will review the scope and follow up promptly.',
-    },
-    {
-      q: 'Do you supply glass separately without frames?',
-      a: 'Yes. We supply glass separately for storefronts, curtain walls, windows, doors, balconies, and showers manufactured strictly to your project drawings and specifications.',
-    },
-    {
-      q: 'How does job-site delivery work?',
-      a: 'Regardless of order size, we coordinate logistics to your exact project schedule and arrange prompt, protected crated delivery directly to the job site nationwide.',
-    },
-    {
-      q: 'Can SWAP assist with installation teams?',
-      a: 'SWAP can help locate qualified installation teams, including experienced glazing contractors able to provide the insurance required for your project.',
-    },
-    {
-      q: 'Are your systems tested for US commercial building codes?',
-      a: 'Yes. All systems we supply are USA Tested and European Tested to satisfy wind-load, thermal (NFRC/U-factor), air infiltration, and water penetration criteria.',
-    },
-  ];
 
   return (
     <div className="w-full bg-[#FAFAFA]">
@@ -158,24 +129,11 @@ export default function ContactPage() {
                       >
                         {COMPANY_INFO.email}
                       </a>
-                      {/* <div className="text-sm text-slate-500 mt-0.5">
-                        Direct delivery for architectural schedules & takeoffs
-                      </div> */}
                     </div>
                   </div>
 
                 </div>
 
-                {/* <div className="pt-4 border-t border-slate-100 text-xs text-slate-600 space-y-2">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-[#C59A45]" />
-                    <span>USA Tested · European Tested Systems</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Truck className="w-4 h-4 text-[#C59A45]" />
-                    <span>Prompt Crated Delivery Directly to Job Sites</span>
-                  </div>
-                </div> */}
               </div>
 
             </div>
@@ -190,9 +148,6 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-heading font-bold text-[#0A2540]">
                     Submit Drawings for Project-Specific Pricing
                   </h3>
-                  {/* <p className="text-sm text-slate-500">
-                    Send us your architectural drawings and schedules. SWAP will prepare takeoffs, review the scope, and follow up promptly.
-                  </p> */}
                 </div>
 
                 {submitted ? (
@@ -327,10 +282,6 @@ export default function ContactPage() {
                     </div>
 
                     <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                      {/* <div className="text-xs text-slate-500">
-                        Protected trade pricing · Quick takeoff turnaround
-                      </div> */}
-
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -348,56 +299,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Trade FAQs */}
-      {/* <section className="py-20 bg-white border-t border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <span className="text-xs uppercase tracking-widest text-[#C59A45] font-bold">
-              Trade Guidance
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#0A2540]">
-              Frequently Asked Questions.
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="bg-[#FAFAFA] rounded-xl border border-slate-200 overflow-hidden"
-              >
-                <h4>
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    aria-expanded={openFaq === i}
-                    aria-controls={`faq-answer-${i}`}
-                    className="flex w-full items-center justify-between gap-4 p-6 text-left"
-                  >
-                    <span className="flex items-start gap-2 text-base font-heading font-bold text-[#0A2540]">
-                      <span className="text-[#C59A45]">Q.</span>
-                      <span>{faq.q}</span>
-                    </span>
-                    <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-[#C59A45] transition-transform duration-200 ${
-                        openFaq === i ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                </h4>
-                {openFaq === i && (
-                  <p
-                    id={`faq-answer-${i}`}
-                    className="px-6 pb-6 pl-11 text-sm leading-relaxed text-slate-600 sm:text-base"
-                  >
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }

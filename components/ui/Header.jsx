@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, ShieldCheck, Phone, Mail } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Phone, Mail } from 'lucide-react';
 import { COMPANY_INFO } from '@/data/companyData';
 export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,16 +27,6 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
       {/* Top Utility Announcement Bar with SWAP Logo Blue Gradient */}
       <div className="bg-gradient-to-r from-[#00132B] via-[#001F43] to-[#0A3366] text-slate-200 text-xs py-2 px-4 sm:px-8 border-b border-[#143E6D]/50">
         <div className="max-w-7xl mx-auto flex justify-end gap-3 font-medium lg:pr-10">
-          {/* <div className="flex items-center gap-4 text-[11px] sm:text-xs tracking-wider">
-            <span className="flex items-center gap-1.5 text-[#E6C687]">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#E6C687]" />
-              USA TESTED · EUROPEAN TESTED
-            </span>
-            <span className="hidden md:inline text-slate-400">|</span>
-            <span className="hidden md:inline text-slate-300 tracking-wider">
-              STEEL · WOOD · ALUMINUM · PVC
-            </span>
-          </div> */}
           <div className="hidden items-center gap-5 text-[15px] tracking-wide md:flex">
             <a
               href={`tel:${COMPANY_INFO.phoneClean}`}
@@ -81,7 +71,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
           </div>
 
           {/* Primary Navigation (Desktop) */}
-          <nav className="hidden lg:flex lg:col-start-1 lg:row-start-1 items-center justify-self-start gap-6 text-[18px] font-medium text-slate-700">
+          <nav className="hidden lg:flex lg:col-start-1 lg:row-start-1 items-center justify-self-start gap-6 text-[20px] font-medium">
             {navItems.slice(0, 3).map((item) => {
               const isActive = currentRoute === item.id;
               return (
@@ -89,10 +79,10 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`py-2.5 transition-colors whitespace-nowrap shrink-0 relative flex items-center gap-1.5 ${
+                  className={`relative flex shrink-0 items-center gap-1.5 whitespace-nowrap py-2.5 transition-colors ${
                     isActive
-                      ? 'text-[#0A2540] font-semibold'
-                      : 'text-slate-600 hover:text-[#0A2540]'
+                      ? 'font-bold text-[#0A2540]'
+                      : 'text-[#334b66] hover:text-[#0A2540]'
                   }`}
                 >
                   {item.label}
@@ -109,10 +99,10 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
             <button
               onClick={() => onNavigate('contact')}
               aria-current={currentRoute === 'contact' ? 'page' : undefined}
-              className={`relative py-2.5 text-[18px] font-medium transition-colors whitespace-nowrap ${
+              className={`relative py-2.5 text-[20px] font-medium transition-colors whitespace-nowrap ${
                 currentRoute === 'contact'
-                  ? 'text-[#0A2540] font-semibold'
-                  : 'text-slate-600 hover:text-[#0A2540]'
+                  ? 'font-bold text-[#0A2540]'
+                  : 'text-[#334b66] hover:text-[#0A2540]'
               }`}
             >
               Contact
@@ -122,7 +112,7 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
             </button>
             <button
               onClick={onOpenQuote}
-              className="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white bg-swap-gold-btn rounded-lg shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2 border border-[#D4A143]/50"
+              className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-[#D4A143]/60 bg-swap-gold-btn px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white shadow-[0_8px_20px_rgba(197,154,69,0.25)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(197,154,69,0.32)]"
             >
               <span>Get a Quote</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-white" />
@@ -168,14 +158,14 @@ export default function Header({ currentRoute, onNavigate, onOpenQuote }) {
                       onNavigate(item.id);
                     }}
                     aria-current={currentRoute === item.id ? 'page' : undefined}
-                    className={`text-left text-lg font-heading py-2 border-b border-slate-100 flex items-center justify-between ${
+                    className={`flex items-center justify-between border-b border-slate-100 py-2 text-left font-heading text-lg ${
                       currentRoute === item.id
-                        ? 'text-[#0A2540] font-bold'
+                        ? 'font-bold text-[#0A2540]'
                         : 'text-slate-800'
                     }`}
                   >
                     <span>{item.label}</span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400" />
+                    <ArrowUpRight className="h-4 w-4 text-slate-400" />
                   </button>
                 );
               })}

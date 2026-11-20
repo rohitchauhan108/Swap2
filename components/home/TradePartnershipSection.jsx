@@ -16,7 +16,6 @@ export default function TradePartnershipSection() {
             </p>
           </div>
 
-          {/* <p className="text-sm text-slate-500">October 28, 2026</p> */}
           <h2 className="mt-3 text-4xl font-heading font-bold leading-tight text-[#0A2540] sm:text-5xl">
             A Partnership Built for the Window Trade
           </h2>
