@@ -284,7 +284,7 @@ export default function ProjectsPage({ imageFiles = {}, initialCategory }) {
       }
 
       if (["steel", "wood"].includes(activeTab)) {
-        return allProjects;
+        return [];
       }
 
       if (activeTab !== "all") {

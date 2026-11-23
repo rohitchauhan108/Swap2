@@ -11,12 +11,6 @@ const PROJECT_CATEGORIES = [
   { id: 'windows', label: 'WINDOWS' },
   { id: 'curtain-walls', label: 'CURTAIN WALLS' },
   { id: 'doors', label: 'DOORS' },
-  { id: 'wall-to-wall', label: 'WALL TO WALL' },
-  { id: 'aluprof', label: 'ALUPROF' },
-  { id: 'reynaers', label: 'REYNAERS' },
-  { id: 'aliplast', label: 'ALIPLAST' },
-  { id: 'asas', label: 'ASAS' },
-  { id: 'hansen', label: 'HANSEN - SLIM AS STEEL' },
 ];
 
 export default function ProductMarquee() {
