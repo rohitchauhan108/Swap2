@@ -81,10 +81,11 @@ const imageGroups = [
     folder: "aluprof",
     label: "Aluprof collection",
     tabs: ["aluprof"],
-    files: ["1.jpg", "2.jpg"],
+    files: ["1.jpg", "2.jpg", "5.jpg"],
     names: {
       "1.jpg": "School Lake wood NJ",
       "2.jpg": "RT70 Lakewood NJ",
+      "5.jpg": "41 kent4835, US Highway 9, Howell Township, New Jersey, 07731",
     },
   },
   {
